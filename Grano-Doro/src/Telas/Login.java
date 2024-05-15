@@ -79,7 +79,7 @@ public class Login extends JFrame {
 		areaUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		areaUsuario.setForeground(Color.LIGHT_GRAY);
 		areaUsuario.setText("Usuário");
-		areaUsuario.setBounds(784, 195, 421, 55);
+		areaUsuario.setBounds(146, 195, 421, 55);
 		contentPane.add(areaUsuario);
 		areaUsuario.setColumns(10);
 		
@@ -95,7 +95,7 @@ public class Login extends JFrame {
 		});
 		areaSenha.setForeground(Color.LIGHT_GRAY);
 		areaSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaSenha.setBounds(784, 312, 421, 55);
+		areaSenha.setBounds(146, 312, 421, 55);
 		contentPane.add(areaSenha);
 		
 		botaoLogar = new JButton("");
@@ -116,7 +116,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		botaoLogar.setBounds(760, 457, 410, 60);
+		botaoLogar.setBounds(120, 457, 410, 60);
 		contentPane.add(botaoLogar);
 		botaoLogar.setBorderPainted(false);
 		
@@ -141,13 +141,13 @@ public class Login extends JFrame {
 				labelSublinha.setForeground(new Color(240, 240, 240));
 			}
 		});
-		labelCadastrar.setBounds(835, 531, 250, 69);
+		labelCadastrar.setBounds(195, 531, 250, 69);
 		contentPane.add(labelCadastrar);
 		
 		labelSublinha = new JLabel("――――――――――――――");
 		labelSublinha.setForeground(new Color(240, 240, 240));
 		labelSublinha.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		labelSublinha.setBounds(835, 575, 280, 14);
+		labelSublinha.setBounds(195, 575, 280, 14);
 		contentPane.add(labelSublinha);
 		
 		JLabel fundo = new JLabel("");

@@ -26,8 +26,6 @@ public class Cadastro extends JFrame {
 	private JPasswordField areaCadastrarSenha;
 	private JPasswordField areaRepetirSenha;
 	private JTextField areaEmail;
-	private JLabel labelLogo;
-	private JPanel panel;
 
 	/**
 	 * Launch the application.
@@ -50,7 +48,7 @@ public class Cadastro extends JFrame {
 	 */
 	public Cadastro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 582);
+		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,6 +57,8 @@ public class Cadastro extends JFrame {
 		contentPane.setLayout(null);
 		
 		areaCadastrarUsuario = new JTextField();
+		areaCadastrarUsuario.setBorder(null);
+		areaCadastrarUsuario.setOpaque(false);
 		areaCadastrarUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -70,11 +70,13 @@ public class Cadastro extends JFrame {
 		areaCadastrarUsuario.setForeground(Color.LIGHT_GRAY);
 		areaCadastrarUsuario.setText("Usuário");
 		areaCadastrarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaCadastrarUsuario.setBounds(545, 115, 350, 30);
+		areaCadastrarUsuario.setBounds(785, 195, 419, 55);
 		contentPane.add(areaCadastrarUsuario);
 		areaCadastrarUsuario.setColumns(10);
 		
 		areaCadastrarSenha = new JPasswordField("Senha");
+		areaCadastrarSenha.setBorder(null);
+		areaCadastrarSenha.setOpaque(false);
 		areaCadastrarSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,10 +86,12 @@ public class Cadastro extends JFrame {
 		});
 		areaCadastrarSenha.setForeground(Color.LIGHT_GRAY);
 		areaCadastrarSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaCadastrarSenha.setBounds(545, 176, 350, 30);
+		areaCadastrarSenha.setBounds(785, 282, 419, 55);
 		contentPane.add(areaCadastrarSenha);
 		
 		areaRepetirSenha = new JPasswordField("Repita a Senha");
+		areaRepetirSenha.setOpaque(false);
+		areaRepetirSenha.setBorder(null);
 		areaRepetirSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -97,10 +101,12 @@ public class Cadastro extends JFrame {
 		});
 		areaRepetirSenha.setForeground(Color.LIGHT_GRAY);
 		areaRepetirSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaRepetirSenha.setBounds(545, 237, 350, 30);
+		areaRepetirSenha.setBounds(785, 369, 419, 55);
 		contentPane.add(areaRepetirSenha);
 		
 		areaEmail = new JTextField();
+		areaEmail.setOpaque(false);
+		areaEmail.setBorder(null);
 		areaEmail.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -111,32 +117,34 @@ public class Cadastro extends JFrame {
 		areaEmail.setForeground(Color.LIGHT_GRAY);
 		areaEmail.setText("E-mail");
 		areaEmail.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaEmail.setBounds(545, 298, 350, 30);
+		areaEmail.setBounds(785, 456, 419, 55);
 		areaEmail.setColumns(10);
 		contentPane.add(areaEmail);
 		
-		JLabel labelCadastro = new JLabel("Cadastro");
-		labelCadastro.setBounds(545, 54, 110, 38);
-		labelCadastro.setFont(new Font("Segoe UI", Font.PLAIN, 28));
-		contentPane.add(labelCadastro);
-		
-		labelLogo = new JLabel("");
-		labelLogo.setBounds(0, 99, 480, 384);
-		contentPane.add(labelLogo);
-		labelLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/GranoDoroLogoMeio.png")));
-		
-		panel = new JPanel();
-		panel.setBackground(new Color(126, 81, 48));
-		panel.setBounds(0, 0, 480, 582);
-		contentPane.add(panel);
-		
-		JButton btnNewButton = new JButton("Efetuar Cadastro");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton botaoCadastrar = new JButton("");
+		botaoCadastrar.setBorder(null);
+		botaoCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastroApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastro.png")));
+			}
+		});
+		botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastro.png")));
+		botaoCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(590, 368, 246, 44);
-		contentPane.add(btnNewButton);
+		botaoCadastrar.setBounds(760, 543, 410, 60);
+		contentPane.add(botaoCadastrar);
+		
+		JLabel fundo = new JLabel("");
+		fundo.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/Cadastro.png")));
+		fundo.setBounds(0, 0, 1280, 720);
+		contentPane.add(fundo);
 		
 		
 	}

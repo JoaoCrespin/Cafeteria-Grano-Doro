@@ -41,7 +41,7 @@ public class Principal extends JFrame {
 	 */
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 582);
+		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,7 +50,7 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JMenuBar menuCafe = new JMenuBar();
-		menuCafe.setBounds(0, 0, 960, 50);
+		menuCafe.setBounds(0, 0, 1264, 50);
 		contentPane.add(menuCafe);
 		
 		JMenuItem menuCaixa = new JMenuItem("Caixa");

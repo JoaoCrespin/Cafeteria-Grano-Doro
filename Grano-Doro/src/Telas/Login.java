@@ -33,9 +33,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField areaUsuario;
 	private JPasswordField areaSenha;
-	private JButton botarLogar;
-	private JLabel lblNewLabel;
-	private JPanel panel;
+	private JButton botaoLogar;
 	private JLabel labelCadastrar;
 	private JLabel labelSublinha;
 
@@ -60,7 +58,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 960, 582);
+		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -68,12 +66,9 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel labelLogin = new JLabel("Login");
-		labelLogin.setFont(new Font("Segoe UI", Font.PLAIN, 28));
-		labelLogin.setBounds(65, 115, 108, 46);
-		contentPane.add(labelLogin);
-		
 		areaUsuario = new JTextField();
+		areaUsuario.setBorder(null);
+		areaUsuario.setOpaque(false);
 		areaUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,11 +79,13 @@ public class Login extends JFrame {
 		areaUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		areaUsuario.setForeground(Color.LIGHT_GRAY);
 		areaUsuario.setText("Usuário");
-		areaUsuario.setBounds(65, 196, 350, 30);
+		areaUsuario.setBounds(784, 195, 421, 55);
 		contentPane.add(areaUsuario);
 		areaUsuario.setColumns(10);
 		
 		areaSenha = new JPasswordField("Senha");
+		areaSenha.setBorder(null);
+		areaSenha.setOpaque(false);
 		areaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -98,33 +95,34 @@ public class Login extends JFrame {
 		});
 		areaSenha.setForeground(Color.LIGHT_GRAY);
 		areaSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaSenha.setBounds(65, 261, 350, 30);
+		areaSenha.setBounds(784, 312, 421, 55);
 		contentPane.add(areaSenha);
 		
-		botarLogar = new JButton("");
-		botarLogar.setBackground(new Color(255, 0, 0));
-		botarLogar.setBorderPainted(false);
-		botarLogar.addActionListener(new ActionListener() {
+		botaoLogar = new JButton("");
+		botaoLogar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoLogar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/botaoEntrarPressionado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoLogar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/botaoEntrar.png")));
+			}
+		});
+		botaoLogar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/botaoEntrar.png")));
+		botaoLogar.setBackground(new Color(240, 240, 240));
+		botaoLogar.setBorderPainted(false);
+		botaoLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		botarLogar.setBounds(170, 348, 140, 44);
-		contentPane.add(botarLogar);
-		botarLogar.setBorderPainted(false);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/Imagens/GranoDoroLogoMeio.png")));
-		lblNewLabel.setBounds(464, 108, 480, 384);
-		contentPane.add(lblNewLabel);
-		
-		panel = new JPanel();
-		panel.setBackground(new Color(126, 81, 48));
-		panel.setBounds(464, 0, 480, 582);
-		contentPane.add(panel);
+		botaoLogar.setBounds(760, 457, 410, 60);
+		contentPane.add(botaoLogar);
+		botaoLogar.setBorderPainted(false);
 		
 		labelCadastrar = new JLabel("Novo Funcionário?");
 		labelCadastrar.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 28));
 		labelCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,23 +132,28 @@ public class Login extends JFrame {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 21));
+				labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 				labelSublinha.setForeground(new Color(0, 0, 0));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+				labelCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 28));
 				labelSublinha.setForeground(new Color(240, 240, 240));
 			}
 		});
-		labelCadastrar.setBounds(143, 450, 194, 27);
+		labelCadastrar.setBounds(835, 531, 250, 69);
 		contentPane.add(labelCadastrar);
 		
-		labelSublinha = new JLabel("――――――――――――――――");
+		labelSublinha = new JLabel("――――――――――――――");
 		labelSublinha.setForeground(new Color(240, 240, 240));
-		labelSublinha.setFont(new Font("Segoe UI", Font.BOLD, 11));
-		labelSublinha.setBounds(153, 470, 184, 14);
+		labelSublinha.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		labelSublinha.setBounds(835, 575, 280, 14);
 		contentPane.add(labelSublinha);
+		
+		JLabel fundo = new JLabel("");
+		fundo.setIcon(new ImageIcon(Login.class.getResource("/Imagens/Login.png")));
+		fundo.setBounds(0, 0, 1280, 720);
+		contentPane.add(fundo);
 	
 		
 ;

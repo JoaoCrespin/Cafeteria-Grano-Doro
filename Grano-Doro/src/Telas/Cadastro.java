@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -26,6 +28,9 @@ public class Cadastro extends JFrame {
 	private JPasswordField areaCadastrarSenha;
 	private JPasswordField areaRepetirSenha;
 	private JTextField areaEmail;
+	private JLabel lblVoltar;
+	private JLabel lblMinimizar;
+	private JLabel lblFechar;
 
 	/**
 	 * Launch the application.
@@ -47,6 +52,8 @@ public class Cadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public Cadastro() {
+		setUndecorated(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
@@ -55,6 +62,7 @@ public class Cadastro extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		areaCadastrarUsuario = new JTextField();
 		areaCadastrarUsuario.setBorder(null);
@@ -70,7 +78,7 @@ public class Cadastro extends JFrame {
 		areaCadastrarUsuario.setForeground(Color.LIGHT_GRAY);
 		areaCadastrarUsuario.setText("Usuário");
 		areaCadastrarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaCadastrarUsuario.setBounds(785, 195, 419, 55);
+		areaCadastrarUsuario.setBounds(788, 195, 418, 55);
 		contentPane.add(areaCadastrarUsuario);
 		areaCadastrarUsuario.setColumns(10);
 		
@@ -86,7 +94,7 @@ public class Cadastro extends JFrame {
 		});
 		areaCadastrarSenha.setForeground(Color.LIGHT_GRAY);
 		areaCadastrarSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaCadastrarSenha.setBounds(785, 282, 419, 55);
+		areaCadastrarSenha.setBounds(788, 281, 418, 55);
 		contentPane.add(areaCadastrarSenha);
 		
 		areaRepetirSenha = new JPasswordField("Repita a Senha");
@@ -101,7 +109,7 @@ public class Cadastro extends JFrame {
 		});
 		areaRepetirSenha.setForeground(Color.LIGHT_GRAY);
 		areaRepetirSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaRepetirSenha.setBounds(785, 369, 419, 55);
+		areaRepetirSenha.setBounds(788, 369, 418, 55);
 		contentPane.add(areaRepetirSenha);
 		
 		areaEmail = new JTextField();
@@ -117,7 +125,7 @@ public class Cadastro extends JFrame {
 		areaEmail.setForeground(Color.LIGHT_GRAY);
 		areaEmail.setText("E-mail");
 		areaEmail.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaEmail.setBounds(785, 456, 419, 55);
+		areaEmail.setBounds(788, 456, 418, 55);
 		areaEmail.setColumns(10);
 		contentPane.add(areaEmail);
 		
@@ -140,6 +148,64 @@ public class Cadastro extends JFrame {
 		});
 		botaoCadastrar.setBounds(760, 543, 410, 60);
 		contentPane.add(botaoCadastrar);
+		
+		JLabel lblVoltar = new JLabel("");
+		lblVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltarApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
+			}
+		});
+		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
+		lblVoltar.setBounds(1071, 4, 32, 32);
+		contentPane.add(lblVoltar);
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimizaApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setState(Frame.ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+		lblMinimizar.setBounds(1140, 4, 32, 32);
+		contentPane.add(lblMinimizar);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfecharApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
+			}
+		});
+		lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
+		lblFechar.setBounds(1207, 5, 32, 32);
+		contentPane.add(lblFechar);
+		
+		
 		
 		JLabel fundo = new JLabel("");
 		fundo.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/Cadastro.png")));

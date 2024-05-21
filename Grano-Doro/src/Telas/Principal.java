@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class Principal extends JFrame {
 
@@ -238,7 +239,8 @@ public class Principal extends JFrame {
 		menuSair.setBounds(0, 530, 270, 85);
 		contentPane.add(menuSair);
 		
-		JLabel lblNewLabel = new JLabel("Teste");
+		JLabel lblNewLabel = new JLabel("Atenção");
+		lblNewLabel.setFont(new Font("Webdings", Font.BOLD | Font.ITALIC, 16));
 		lblNewLabel.setBounds(385, 105, 682, 492);
 		contentPane.add(lblNewLabel);
 		

@@ -50,6 +50,7 @@ public class Login extends JFrame {
 	private JLabel lblFechar;
 	private JLabel lblVoltar;
 	private JLabel fundo;
+	private JTextField areaVerSenha;
 
 	/**
 	 * Launch the application.
@@ -120,18 +121,35 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaUsuario.setText("");
-				areaUsuario.setForeground(Color.BLACK);
+				areaUsuario.setForeground(Color.DARK_GRAY);
 			}
 		});
 		contentPane.setLayout(null);
-		areaUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				areaSenha.setVisible(false);
+				areaVerSenha.setText(areaSenha.getText());
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				areaSenha.setVisible(true);
+				areaVerSenha.setText(null);
+			}
+		});
+
+		btnNewButton.setBounds(510, 336, 55, 60);
+		contentPane.add(btnNewButton);
+		areaUsuario.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		areaUsuario.setForeground(Color.LIGHT_GRAY);
 		areaUsuario.setText("Usuário");
 		contentPane.add(areaUsuario);
 		areaUsuario.setColumns(10);
 		
 		areaSenha = new JPasswordField("Senha");
-		areaSenha.setBounds(147, 335, 418, 55);
+		areaSenha.setBounds(155, 335, 360, 55);
 		areaSenha.setBorder(null);
 		areaSenha.setOpaque(false);
 		areaSenha.addMouseListener(new MouseAdapter() {
@@ -171,6 +189,13 @@ public class Login extends JFrame {
 				
 			}
 		});
+		
+		areaVerSenha = new JTextField();
+		areaVerSenha.setBorder(null);
+		areaVerSenha.setOpaque(false);
+		areaVerSenha.setBounds(155, 335, 360, 55);
+		contentPane.add(areaVerSenha);
+		areaVerSenha.setColumns(10);
 		contentPane.add(botaoLogar);
 		botaoLogar.setBorderPainted(false);
 		
@@ -261,6 +286,7 @@ public class Login extends JFrame {
 		contentPane.add(lblFechar);
 		
 		fundo = new JLabel("");
+		fundo.setBorder(null);
 		fundo.setIcon(new ImageIcon(Login.class.getResource("/Imagens/Login.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);

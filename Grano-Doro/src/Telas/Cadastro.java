@@ -35,6 +35,8 @@ public class Cadastro extends JFrame {
 	private JLabel lblVoltar;
 	private JLabel lblMinimizar;
 	private JLabel lblFechar;
+	
+	private int status;
 
 	/**
 	 * Launch the application.
@@ -54,23 +56,34 @@ public class Cadastro extends JFrame {
 	
 	private void cadastrarUsuario() throws SQLException {
 	    String usuario = areaCadastrarUsuario.getText();
-		String senha = areaCadastrarSenha.getText();
-		String contato = areaContato.getText();
+	    String senha = areaCadastrarSenha.getText();
+	    String repetirSenha = areaRepetirSenha.getText();
+	    String contato = areaContato.getText();
 
-		LoginDTO loginDTO = new LoginDTO();
-		loginDTO.setUsuario(usuario);
-		loginDTO.setSenha(senha);
-		loginDTO.setContato(contato);
+	    if (!senha.equals(repetirSenha)) {
+	        JOptionPane.showMessageDialog(null, "As senhas não coincidem. Por favor, tente novamente.");
+	        status=0;
+	        return;
+	    }
 
-		CadastroDAO usuarioDAO = new CadastroDAO();
-		boolean cadastradoComSucesso = usuarioDAO.cadastrarUsuario(loginDTO);
+	    LoginDTO loginDTO = new LoginDTO();
+	    loginDTO.setUsuario(usuario);
+	    loginDTO.setSenha(senha);
+	    loginDTO.setContato(contato);
 
-		if (cadastradoComSucesso) {
-		    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-		} else {
-		    JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
-		}
+	    CadastroDAO usuarioDAO = new CadastroDAO();
+	    boolean cadastradoComSucesso = usuarioDAO.cadastrarUsuario(loginDTO);
+
+	    if (cadastradoComSucesso) {
+	        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+	        status=1;
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
+	        status=0;
+	    }
 	}
+
+
 
 
 	/**
@@ -172,6 +185,13 @@ public class Cadastro extends JFrame {
 				} catch (SQLException erro) {
 					JOptionPane.showMessageDialog(null, "Erro no botao cadastrar: " + erro.getMessage());
 				}
+				if(status==1) {
+					Login login = new Login();
+					login.setVisible(true);
+					dispose();
+				}
+
+				
 			}
 		});
 		botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastro.png")));

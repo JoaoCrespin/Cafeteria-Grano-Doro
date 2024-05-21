@@ -18,11 +18,13 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtTeste;
 
 	/**
 	 * Launch the application.
@@ -68,6 +70,12 @@ public class Principal extends JFrame {
 				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
 			}
 		});
+		
+		txtTeste = new JTextField();
+		txtTeste.setText("teste");
+		txtTeste.setBounds(549, 636, 86, 20);
+		contentPane.add(txtTeste);
+		txtTeste.setColumns(10);
 		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
 		lblVoltar.setBounds(1071, 4, 32, 32);
 		contentPane.add(lblVoltar);

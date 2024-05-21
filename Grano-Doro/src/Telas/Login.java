@@ -36,6 +36,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JCheckBox;
 
 public class Login extends JFrame {
 
@@ -126,41 +127,47 @@ public class Login extends JFrame {
 		});
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JLabel botaoVerSenha = new JLabel("");
+		botaoVerSenha.setBorder(null);
+		botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
+		botaoVerSenha.addMouseListener(new MouseAdapter() {
 			@Override
+			//Faz "areaSenha" ficar invisivel, copia o texto de "areaSenha" para "areaVerSenha", troca o icon.
 			public void mouseEntered(MouseEvent e) {
 				areaSenha.setVisible(false);
 				areaVerSenha.setText(areaSenha.getText());
+				botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenhaApertado.png")));
 			}
 			@Override
+			//Faz "areaSenha" ficar visivel, elimina o texto de "areaVerSenha", troca o icon para o padrão.
 			public void mouseExited(MouseEvent e) {
 				areaSenha.setVisible(true);
 				areaVerSenha.setText(null);
+				botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
 			}
 		});
 
-		btnNewButton.setBounds(510, 336, 55, 60);
-		contentPane.add(btnNewButton);
-		areaUsuario.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		botaoVerSenha.setBounds(500, 335, 55, 55);
+		contentPane.add(botaoVerSenha);
+		areaUsuario.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaUsuario.setForeground(Color.LIGHT_GRAY);
 		areaUsuario.setText("Usuário");
 		contentPane.add(areaUsuario);
 		areaUsuario.setColumns(10);
 		
 		areaSenha = new JPasswordField("Senha");
-		areaSenha.setBounds(155, 335, 360, 55);
+		areaSenha.setBounds(147, 335, 418, 55);
 		areaSenha.setBorder(null);
 		areaSenha.setOpaque(false);
 		areaSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaSenha.setText("");
-				areaSenha.setForeground(Color.BLACK);
+				areaSenha.setForeground(Color.DARK_GRAY);
 			}
 		});
 		areaSenha.setForeground(Color.LIGHT_GRAY);
-		areaSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		contentPane.add(areaSenha);
 		
 		botaoLogar = new JButton("");
@@ -191,9 +198,11 @@ public class Login extends JFrame {
 		});
 		
 		areaVerSenha = new JTextField();
+		areaVerSenha.setForeground(Color.DARK_GRAY);
+		areaVerSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaVerSenha.setBorder(null);
 		areaVerSenha.setOpaque(false);
-		areaVerSenha.setBounds(155, 335, 360, 55);
+		areaVerSenha.setBounds(147, 335, 418, 55);
 		contentPane.add(areaVerSenha);
 		areaVerSenha.setColumns(10);
 		contentPane.add(botaoLogar);
@@ -287,7 +296,7 @@ public class Login extends JFrame {
 		
 		fundo = new JLabel("");
 		fundo.setBorder(null);
-		fundo.setIcon(new ImageIcon(Login.class.getResource("/Imagens/Login.png")));
+		fundo.setIcon(new ImageIcon(Login.class.getResource("/Fundos/Login.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);
 	

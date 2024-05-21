@@ -37,6 +37,9 @@ public class Cadastro extends JFrame {
 	private JLabel lblFechar;
 	
 	private int status;
+	private JTextField areaVerSenha;
+	private JLabel botaoVerRepetirSenha;
+	private JTextField areaVerRepetirSenha;
 
 	/**
 	 * Launch the application.
@@ -109,13 +112,13 @@ public class Cadastro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaCadastrarUsuario.setText("");
-				areaCadastrarUsuario.setForeground(Color.BLACK);
+				areaCadastrarUsuario.setForeground(Color.DARK_GRAY);
 			}
 		});
 	
 		areaCadastrarUsuario.setForeground(Color.LIGHT_GRAY);
 		areaCadastrarUsuario.setText("Usuário");
-		areaCadastrarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaCadastrarUsuario.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaCadastrarUsuario.setBounds(788, 195, 418, 55);
 		contentPane.add(areaCadastrarUsuario);
 		areaCadastrarUsuario.setColumns(10);
@@ -127,11 +130,34 @@ public class Cadastro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaCadastrarSenha.setText("");
-				areaCadastrarSenha.setForeground(Color.BLACK);
+				areaCadastrarSenha.setForeground(Color.DARK_GRAY);
 			}
 		});
+		
+		JLabel botaoVerSenha = new JLabel("");
+		botaoVerSenha.setBorder(null);
+		botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
+		botaoVerSenha.addMouseListener(new MouseAdapter() {
+			@Override
+			//Faz "areaCadastrarSenha" ficar invisivel, copia o texto de "areaCadastrarSenha" para "areaVerSenha", troca o icon.
+			public void mouseEntered(MouseEvent e) {
+				areaCadastrarSenha.setVisible(false);
+				areaVerSenha.setText(areaCadastrarSenha.getText());
+				botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenhaApertado.png")));
+			}
+			@Override
+			//Faz "areaCadastrarSenha" ficar visivel, elimina o texto de "areaVerSenha", troca o icon para o padrão.
+			public void mouseExited(MouseEvent e) {
+				areaCadastrarSenha.setVisible(true);
+				areaVerSenha.setText(null);
+				botaoVerSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
+			}
+		});
+		
+				botaoVerSenha.setBounds(1141, 281, 55, 55);
+				contentPane.add(botaoVerSenha);
 		areaCadastrarSenha.setForeground(Color.LIGHT_GRAY);
-		areaCadastrarSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaCadastrarSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaCadastrarSenha.setBounds(788, 281, 418, 55);
 		contentPane.add(areaCadastrarSenha);
 		
@@ -142,11 +168,45 @@ public class Cadastro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaRepetirSenha.setText("");
-				areaRepetirSenha.setForeground(Color.BLACK);
+				areaRepetirSenha.setForeground(Color.DARK_GRAY);
 			}
 		});
+		
+		areaVerSenha = new JTextField();
+		areaVerSenha.setOpaque(false);
+		areaVerSenha.setForeground(Color.DARK_GRAY);
+		areaVerSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
+		areaVerSenha.setColumns(10);
+		areaVerSenha.setBorder(null);
+		areaVerSenha.setBounds(788, 281, 418, 55);
+		contentPane.add(areaVerSenha);
+		
+		botaoVerRepetirSenha = new JLabel("");
+		botaoVerRepetirSenha.setBorder(null);
+		botaoVerRepetirSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
+		botaoVerRepetirSenha.addMouseListener(new MouseAdapter() {
+			@Override
+			//Faz "areaRepetirSenha" ficar invisivel, copia o texto de "areaRepetirSenha" para "areaVerRepetirSenha", troca o icon.
+			public void mouseEntered(MouseEvent e) {
+				areaRepetirSenha.setVisible(false);
+				areaVerRepetirSenha.setText(areaRepetirSenha.getText());
+				botaoVerRepetirSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenhaApertado.png")));
+			}
+			@Override
+			//Faz "areaRepetirSenha" ficar visivel, elimina o texto de "areaVerRepetirSenha", troca o icon para o padrão.
+			public void mouseExited(MouseEvent e) {
+				areaRepetirSenha.setVisible(true);
+				areaVerRepetirSenha.setText(null);
+				botaoVerRepetirSenha.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bVerSenha.png")));
+			}
+		});
+		
+		botaoVerRepetirSenha.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/bVerSenha.png")));
+		botaoVerRepetirSenha.setBorder(null);
+		botaoVerRepetirSenha.setBounds(1141, 369, 55, 55);
+		contentPane.add(botaoVerRepetirSenha);
 		areaRepetirSenha.setForeground(Color.LIGHT_GRAY);
-		areaRepetirSenha.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaRepetirSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaRepetirSenha.setBounds(788, 369, 418, 55);
 		contentPane.add(areaRepetirSenha);
 		
@@ -157,12 +217,21 @@ public class Cadastro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				areaContato.setText("");
-				areaContato.setForeground(Color.BLACK);
+				areaContato.setForeground(Color.DARK_GRAY);
 			}
 		});
+		
+		areaVerRepetirSenha = new JTextField();
+		areaVerRepetirSenha.setOpaque(false);
+		areaVerRepetirSenha.setForeground(Color.DARK_GRAY);
+		areaVerRepetirSenha.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
+		areaVerRepetirSenha.setColumns(10);
+		areaVerRepetirSenha.setBorder(null);
+		areaVerRepetirSenha.setBounds(788, 369, 418, 55);
+		contentPane.add(areaVerRepetirSenha);
 		areaContato.setForeground(Color.LIGHT_GRAY);
 		areaContato.setText("ID de Usuário");
-		areaContato.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaContato.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaContato.setBounds(788, 456, 418, 55);
 		areaContato.setColumns(10);
 		contentPane.add(areaContato);
@@ -187,8 +256,9 @@ public class Cadastro extends JFrame {
 				}
 				if(status==1) {
 					Login login = new Login();
-					login.setVisible(true);
 					dispose();
+					login.setVisible(true);
+					
 				}
 
 				
@@ -206,6 +276,9 @@ public class Cadastro extends JFrame {
 		lblVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Login login = new Login();
+				dispose();
+				login.setVisible(true);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -259,9 +332,8 @@ public class Cadastro extends JFrame {
 		contentPane.add(lblFechar);
 		
 		
-		
 		JLabel fundo = new JLabel("");
-		fundo.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/Cadastro.png")));
+		fundo.setIcon(new ImageIcon(Cadastro.class.getResource("/Fundos/Cadastro.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);
 		

@@ -16,12 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JMenuItem menuMesas;
 
 	/**
 	 * Launch the application.
@@ -52,27 +52,6 @@ public class Principal extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JMenuBar menuCafe = new JMenuBar();
-		menuCafe.setBounds(0, 670, 1264, 50);
-		contentPane.add(menuCafe);
-		
-		JMenuItem menuCaixa = new JMenuItem("Caixa");
-		menuCaixa.setHorizontalAlignment(SwingConstants.CENTER);
-		menuCafe.add(menuCaixa);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Estoque ");
-		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.CENTER);
-		menuCafe.add(mntmNewMenuItem);
-		
-		JMenuItem menuVendas = new JMenuItem("Vendas");
-		menuCafe.add(menuVendas);
-		
-		menuMesas = new JMenuItem("Mesas");
-		menuCafe.add(menuMesas);
-		
-		JMenuItem menuSair = new JMenuItem("Sair");
-		menuCafe.add(menuSair);
 		
 		JLabel lblVoltar = new JLabel("");
 		lblVoltar.addMouseListener(new MouseAdapter() {
@@ -130,8 +109,47 @@ public class Principal extends JFrame {
 		lblFechar.setBounds(1207, 5, 32, 32);
 		contentPane.add(lblFechar);
 		
+		JButton menuMesa = new JButton("");
+		menuMesa.setIcon(null);
+		menuMesa.setBorder(null);
+		menuMesa.setBounds(0, 105, 270, 85);
+		contentPane.add(menuMesa);
+		
+		JButton menuVenda = new JButton("");
+		menuVenda.setBorder(null);
+		menuVenda.setBounds(0, 190, 270, 85);
+		contentPane.add(menuVenda);
+		
+		JButton menuCaixa = new JButton("");
+		menuCaixa.setBorder(null);
+		menuCaixa.setBounds(0, 275, 270, 85);
+		contentPane.add(menuCaixa);
+		
+		JButton menuEstoque = new JButton("");
+		menuEstoque.setBorder(null);
+		menuEstoque.setBounds(0, 360, 270, 85);
+		contentPane.add(menuEstoque);
+		
+		JButton menuFuncionarios = new JButton("");
+		menuFuncionarios.setBorder(null);
+		menuFuncionarios.setBounds(0, 445, 270, 85);
+		contentPane.add(menuFuncionarios);
+		
+		JButton menuSair = new JButton("");
+		menuSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login login = new Login();
+				dispose();
+				login.setVisible(true);
+			}
+		});
+		menuSair.setBorder(null);
+		menuSair.setBounds(0, 530, 270, 85);
+		contentPane.add(menuSair);
+		
 		JLabel fundo = new JLabel("");
-		fundo.setIcon(new ImageIcon(Principal.class.getResource("/Imagens/Principal.png")));
+		fundo.setIcon(new ImageIcon(Principal.class.getResource("/Fundos/Principal.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);
 	}

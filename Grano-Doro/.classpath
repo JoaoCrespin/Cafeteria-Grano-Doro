@@ -6,12 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="database/" kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Ravi Barbosa/Documents/GitHub/Cafeteria-Grano-Doro/Bibliotecas/slf4j-api-1.7.36.jar">
+	<classpathentry kind="lib" path="/Cafeteria-Grano-Doro/Bibliotecas/sqlite-jdbc-3.45.3.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Ravi Barbosa/Documents/GitHub/Cafeteria-Grano-Doro/Bibliotecas/sqlite-jdbc-3.45.3.0.jar">
+	<classpathentry kind="lib" path="/Cafeteria-Grano-Doro/Bibliotecas/slf4j-api-1.7.36.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

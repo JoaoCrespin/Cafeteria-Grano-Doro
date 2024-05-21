@@ -238,6 +238,10 @@ public class Principal extends JFrame {
 		menuSair.setBounds(0, 530, 270, 85);
 		contentPane.add(menuSair);
 		
+		JLabel lblNewLabel = new JLabel("Teste");
+		lblNewLabel.setBounds(385, 105, 682, 492);
+		contentPane.add(lblNewLabel);
+		
 		JLabel fundo = new JLabel("");
 		fundo.setIcon(new ImageIcon(Principal.class.getResource("/Fundos/Principal.png")));
 		fundo.setBounds(0, 0, 1280, 720);

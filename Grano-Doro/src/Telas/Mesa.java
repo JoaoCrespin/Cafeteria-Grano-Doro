@@ -110,7 +110,7 @@ public class Mesa extends JFrame {
 		contentPane.add(lblFechar);
 		
 		JButton menuMesa = new JButton("");
-		menuMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuMesa.png")));
+		menuMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuMesaEscolhido.png")));
 		menuMesa.setBorder(null);
 		menuMesa.setBounds(0, 105, 270, 85);
 		contentPane.add(menuMesa);

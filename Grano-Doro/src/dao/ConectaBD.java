@@ -15,14 +15,9 @@ public class ConectaBD
 	{
 		try
 		{
-			// Obter o caminho absoluto do diretório do projeto
 			Path currentRelativePath = Paths.get("");
 			String projectPath = currentRelativePath.toAbsolutePath().toString();
-			
-			// Construir o caminho relativo para o banco de dados
 			String dbPath = Paths.get(projectPath, "src", "database", "cafeina.db").toString();
-			
-			// URL de conexão para SQLite
 			String url = "jdbc:sqlite:" + dbPath;
 			con = DriverManager.getConnection(url);
 		}

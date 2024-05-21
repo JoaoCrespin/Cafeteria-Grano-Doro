@@ -19,6 +19,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import dto.LoginDTO;
+import dao.CadastroDAO;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class Cadastro extends JFrame {
 
@@ -27,7 +31,7 @@ public class Cadastro extends JFrame {
 	private JTextField areaCadastrarUsuario;
 	private JPasswordField areaCadastrarSenha;
 	private JPasswordField areaRepetirSenha;
-	private JTextField areaID;
+	private JTextField areaContato;
 	private JLabel lblVoltar;
 	private JLabel lblMinimizar;
 	private JLabel lblFechar;
@@ -47,6 +51,27 @@ public class Cadastro extends JFrame {
 			}
 		});
 	}
+	
+	private void cadastrarUsuario() throws SQLException {
+	    String usuario = areaCadastrarUsuario.getText();
+		String senha = areaCadastrarSenha.getText();
+		String contato = areaContato.getText();
+
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setUsuario(usuario);
+		loginDTO.setSenha(senha);
+		loginDTO.setContato(contato);
+
+		CadastroDAO usuarioDAO = new CadastroDAO();
+		boolean cadastradoComSucesso = usuarioDAO.cadastrarUsuario(loginDTO);
+
+		if (cadastradoComSucesso) {
+		    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+		} else {
+		    JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
+		}
+	}
+
 
 	/**
 	 * Create the frame.
@@ -112,22 +137,22 @@ public class Cadastro extends JFrame {
 		areaRepetirSenha.setBounds(788, 369, 418, 55);
 		contentPane.add(areaRepetirSenha);
 		
-		areaID = new JTextField();
-		areaID.setOpaque(false);
-		areaID.setBorder(null);
-		areaID.addMouseListener(new MouseAdapter() {
+		areaContato = new JTextField();
+		areaContato.setOpaque(false);
+		areaContato.setBorder(null);
+		areaContato.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				areaID.setText("");
-				areaID.setForeground(Color.BLACK);
+				areaContato.setText("");
+				areaContato.setForeground(Color.BLACK);
 			}
 		});
-		areaID.setForeground(Color.LIGHT_GRAY);
-		areaID.setText("ID de Usuário");
-		areaID.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		areaID.setBounds(788, 456, 418, 55);
-		areaID.setColumns(10);
-		contentPane.add(areaID);
+		areaContato.setForeground(Color.LIGHT_GRAY);
+		areaContato.setText("ID de Usuário");
+		areaContato.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		areaContato.setBounds(788, 456, 418, 55);
+		areaContato.setColumns(10);
+		contentPane.add(areaContato);
 		
 		JButton botaoCadastrar = new JButton("");
 		botaoCadastrar.setBorder(null);
@@ -139,6 +164,14 @@ public class Cadastro extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastro.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					cadastrarUsuario();
+				} catch (SQLException erro) {
+					JOptionPane.showMessageDialog(null, "Erro no botao cadastrar: " + erro.getMessage());
+				}
 			}
 		});
 		botaoCadastrar.setIcon(new ImageIcon(Cadastro.class.getResource("/Imagens/botaoCadastro.png")));

@@ -3,7 +3,7 @@ package dto;
 public class LoginDTO 
 {
 	private int UserID;
-	private String Usuario, Senha;
+	private String Usuario, Senha, Contato;
 	
 	public int getUserID() 
 	{
@@ -19,6 +19,10 @@ public class LoginDTO
 	{
 		return Usuario;
 	}
+	public String getContato() 
+	{
+		return Contato;
+	}
 	
 	public void setUsuario(String usuario) 
 	{
@@ -33,6 +37,9 @@ public class LoginDTO
 	{
 		Senha = senha;
 	}
-	
+	public void setContato(String contato) 
+	{
+		Contato = contato;
+	}
 	
 }

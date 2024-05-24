@@ -230,7 +230,7 @@ public class Cadastro extends JFrame {
 		areaVerRepetirSenha.setBounds(788, 369, 418, 55);
 		contentPane.add(areaVerRepetirSenha);
 		areaContato.setForeground(Color.LIGHT_GRAY);
-		areaContato.setText("ID de Usuário");
+		areaContato.setText("Contato");
 		areaContato.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaContato.setBounds(788, 456, 418, 55);
 		areaContato.setColumns(10);

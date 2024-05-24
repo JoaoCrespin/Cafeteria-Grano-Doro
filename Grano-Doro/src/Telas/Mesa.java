@@ -17,6 +17,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class Mesa extends JFrame {
 
@@ -51,9 +54,9 @@ public class Mesa extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JLabel lblVoltar = new JLabel("");
+		lblVoltar.setBounds(1071, 4, 32, 32);
 		lblVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -67,11 +70,12 @@ public class Mesa extends JFrame {
 				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
 			}
 		});
+		contentPane.setLayout(null);
 		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-		lblVoltar.setBounds(1071, 4, 32, 32);
 		contentPane.add(lblVoltar);
 		
 		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.setBounds(1140, 4, 32, 32);
 		lblMinimizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -87,10 +91,10 @@ public class Mesa extends JFrame {
 			}
 		});
 		lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
-		lblMinimizar.setBounds(1140, 4, 32, 32);
 		contentPane.add(lblMinimizar);
 		
 		JLabel lblFechar = new JLabel("");
+		lblFechar.setBounds(1207, 5, 32, 32);
 		lblFechar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -106,16 +110,16 @@ public class Mesa extends JFrame {
 			}
 		});
 		lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
-		lblFechar.setBounds(1207, 5, 32, 32);
 		contentPane.add(lblFechar);
 		
 		JButton menuMesa = new JButton("");
+		menuMesa.setBounds(0, 105, 270, 85);
 		menuMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuMesaEscolhido.png")));
 		menuMesa.setBorder(null);
-		menuMesa.setBounds(0, 105, 270, 85);
 		contentPane.add(menuMesa);
 		
 		JButton menuVenda = new JButton("");
+		menuVenda.setBounds(0, 190, 270, 85);
 		menuVenda.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -134,10 +138,10 @@ public class Mesa extends JFrame {
 		});
 		menuVenda.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuVenda.png")));
 		menuVenda.setBorder(null);
-		menuVenda.setBounds(0, 190, 270, 85);
 		contentPane.add(menuVenda);
 		
 		JButton menuCaixa = new JButton("");
+		menuCaixa.setBounds(0, 275, 270, 85);
 		menuCaixa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -155,10 +159,10 @@ public class Mesa extends JFrame {
 		});
 		menuCaixa.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuCaixa.png")));
 		menuCaixa.setBorder(null);
-		menuCaixa.setBounds(0, 275, 270, 85);
 		contentPane.add(menuCaixa);
 		
 		JButton menuEstoque = new JButton("");
+		menuEstoque.setBounds(0, 360, 270, 85);
 		menuEstoque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -176,10 +180,10 @@ public class Mesa extends JFrame {
 		});
 		menuEstoque.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuEstoque.png")));
 		menuEstoque.setBorder(null);
-		menuEstoque.setBounds(0, 360, 270, 85);
 		contentPane.add(menuEstoque);
 		
 		JButton menuFuncionarios = new JButton("");
+		menuFuncionarios.setBounds(0, 445, 270, 85);
 		menuFuncionarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -197,10 +201,10 @@ public class Mesa extends JFrame {
 		});
 		menuFuncionarios.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuFunc.png")));
 		menuFuncionarios.setBorder(null);
-		menuFuncionarios.setBounds(0, 445, 270, 85);
 		contentPane.add(menuFuncionarios);
 		
 		JButton menuSair = new JButton("");
+		menuSair.setBounds(0, 530, 270, 85);
 		menuSair.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -219,12 +223,11 @@ public class Mesa extends JFrame {
 		});
 		menuSair.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuSair.png")));
 		menuSair.setBorder(null);
-		menuSair.setBounds(0, 530, 270, 85);
 		contentPane.add(menuSair);
 		
 		JLabel fundo = new JLabel("");
-		fundo.setIcon(new ImageIcon(Mesa.class.getResource("/Fundos/Principal.png")));
 		fundo.setBounds(0, 0, 1280, 720);
+		fundo.setIcon(new ImageIcon(Mesa.class.getResource("/Fundos/Principal.png")));
 		contentPane.add(fundo);
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {

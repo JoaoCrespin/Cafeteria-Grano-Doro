@@ -112,6 +112,49 @@ public class Mesa extends JFrame {
 		lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
 		contentPane.add(lblFechar);
 		
+		JButton botaoMesaLivre1 = new JButton("");
+		botaoMesaLivre1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MesaPopUp mesapopup = new MesaPopUp();
+				mesapopup.setVisible(true);
+			}
+		});
+		botaoMesaLivre1.setBorder(null);
+		botaoMesaLivre1.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre1.setBounds(445, 147, 190, 190);
+		contentPane.add(botaoMesaLivre1);
+		
+		JButton botaoMesaLivre2 = new JButton("");
+		botaoMesaLivre2.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre2.setBorder(null);
+		botaoMesaLivre2.setBounds(685, 147, 190, 190);
+		contentPane.add(botaoMesaLivre2);
+		
+		JButton botaoMesaLivre3 = new JButton("");
+		botaoMesaLivre3.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre3.setBorder(null);
+		botaoMesaLivre3.setBounds(925, 147, 190, 190);
+		contentPane.add(botaoMesaLivre3);
+		
+		JButton botaoMesaLivre4 = new JButton("");
+		botaoMesaLivre4.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre4.setBorder(null);
+		botaoMesaLivre4.setBounds(445, 392, 190, 190);
+		contentPane.add(botaoMesaLivre4);
+		
+		JButton botaoMesaLivre5 = new JButton("");
+		botaoMesaLivre5.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre5.setBorder(null);
+		botaoMesaLivre5.setBounds(685, 392, 190, 190);
+		contentPane.add(botaoMesaLivre5);
+		
+		JButton botaoMesaLivre6 = new JButton("");
+		botaoMesaLivre6.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+		botaoMesaLivre6.setBorder(null);
+		botaoMesaLivre6.setBounds(925, 392, 190, 190);
+		contentPane.add(botaoMesaLivre6);
+		
 		JButton menuMesa = new JButton("");
 		menuMesa.setBounds(0, 105, 270, 85);
 		menuMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuMesaEscolhido.png")));

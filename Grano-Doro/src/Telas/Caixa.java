@@ -19,8 +19,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
-public class Vendas extends JFrame {
+public class Caixa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -37,7 +40,7 @@ public class Vendas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vendas frame = new Vendas();
+					Caixa frame = new Caixa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +52,7 @@ public class Vendas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Vendas() {
+	public Caixa() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -120,11 +123,11 @@ public class Vendas extends JFrame {
 		menuMesa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuMesaEscolhido.png")));
+				menuMesa.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuMesaEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuMesa.png")));
+				menuMesa.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuMesa.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,42 +136,42 @@ public class Vendas extends JFrame {
 				mesa.setVisible(true);
 			}
 		});
-		menuMesa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuMesa.png")));
+		menuMesa.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuMesa.png")));
 		menuMesa.setBorder(null);
 		menuMesa.setBounds(0, 105, 270, 85);
 		contentPane.add(menuMesa);
-		
-		JButton menuVenda = new JButton("");
-		menuVenda.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuVenda.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuVendaEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuVenda.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuVenda.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Vendas vendas = new Vendas();
-				vendas.setVisible(true);
-				
-			}
-		});
-		menuVenda.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuVenda.png")));
-		menuVenda.setBorder(null);
-		menuVenda.setBounds(0, 190, 270, 85);
-		contentPane.add(menuVenda);
 		
 		JButton menuCaixa = new JButton("");
 		menuCaixa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuCaixa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuCaixaEscolhido.png")));
+				menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixaEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuCaixa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuCaixa.png")));
+				menuCaixa.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuCaixa.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Caixa vendas = new Caixa();
+				vendas.setVisible(true);
+				
+			}
+		});
+		menuCaixa.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuCaixa.png")));
+		menuCaixa.setBorder(null);
+		menuCaixa.setBounds(0, 190, 270, 85);
+		contentPane.add(menuCaixa);
+		
+		JButton menuRelatorio = new JButton("");
+		menuRelatorio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuRelatorio.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuRelatóriosEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuRelatorio.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuRelatórios.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -176,20 +179,20 @@ public class Vendas extends JFrame {
 				//caixa.setVisible(true);
 			}
 		});
-		menuCaixa.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuCaixa.png")));
-		menuCaixa.setBorder(null);
-		menuCaixa.setBounds(0, 275, 270, 85);
-		contentPane.add(menuCaixa);
+		menuRelatorio.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuRelatórios.png")));
+		menuRelatorio.setBorder(null);
+		menuRelatorio.setBounds(0, 275, 270, 85);
+		contentPane.add(menuRelatorio);
 		
 		JButton menuEstoque = new JButton("");
 		menuEstoque.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuEstoque.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuEstoqueEscolhido.png")));
+				menuEstoque.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuEstoqueEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuEstoque.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuEstoque.png")));
+				menuEstoque.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuEstoque.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -197,7 +200,7 @@ public class Vendas extends JFrame {
 				//estoque.setVisible(true);
 			}
 		});
-		menuEstoque.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuEstoque.png")));
+		menuEstoque.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuEstoque.png")));
 		menuEstoque.setBorder(null);
 		menuEstoque.setBounds(0, 360, 270, 85);
 		contentPane.add(menuEstoque);
@@ -206,11 +209,11 @@ public class Vendas extends JFrame {
 		menuFuncionarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuFuncionarios.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuFuncEscolhido.png")));
+				menuFuncionarios.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuFuncEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuFuncionarios.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuFunc.png")));
+				menuFuncionarios.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuFunc.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -218,7 +221,7 @@ public class Vendas extends JFrame {
 				//funcionarios.setVisible(true);
 			}
 		});
-		menuFuncionarios.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuFunc.png")));
+		menuFuncionarios.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuFunc.png")));
 		menuFuncionarios.setBorder(null);
 		menuFuncionarios.setBounds(0, 445, 270, 85);
 		contentPane.add(menuFuncionarios);
@@ -227,11 +230,11 @@ public class Vendas extends JFrame {
 		menuSair.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuSair.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuSairEscolhido.png")));
+				menuSair.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuSairEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuSair.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuSair.png")));
+				menuSair.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuSair.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -240,12 +243,14 @@ public class Vendas extends JFrame {
 				login.setVisible(true);
 			}
 		});
-		menuSair.setIcon(new ImageIcon(Vendas.class.getResource("/Menus/menuSair.png")));
+		menuSair.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuSair.png")));
 		menuSair.setBorder(null);
 		menuSair.setBounds(0, 530, 270, 85);
 		contentPane.add(menuSair);
 		
 		areaCodProduto = new JTextField();
+		areaCodProduto.setForeground(Color.DARK_GRAY);
+		areaCodProduto.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaCodProduto.setBorder(null);
 		areaCodProduto.setOpaque(false);
 		areaCodProduto.setBounds(312, 121, 305, 55);
@@ -253,6 +258,8 @@ public class Vendas extends JFrame {
 		areaCodProduto.setColumns(10);
 		
 		areaQuantidade = new JTextField();
+		areaQuantidade.setForeground(Color.DARK_GRAY);
+		areaQuantidade.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaQuantidade.setBorder(null);
 		areaQuantidade.setOpaque(false);
 		areaQuantidade.setColumns(10);
@@ -260,6 +267,8 @@ public class Vendas extends JFrame {
 		contentPane.add(areaQuantidade);
 		
 		areaDinheiro = new JTextField();
+		areaDinheiro.setForeground(Color.DARK_GRAY);
+		areaDinheiro.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaDinheiro.setOpaque(false);
 		areaDinheiro.setColumns(10);
 		areaDinheiro.setBorder(null);
@@ -267,6 +276,8 @@ public class Vendas extends JFrame {
 		contentPane.add(areaDinheiro);
 		
 		areaTroco = new JTextField();
+		areaTroco.setForeground(Color.DARK_GRAY);
+		areaTroco.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaTroco.setEditable(false);
 		areaTroco.setOpaque(false);
 		areaTroco.setColumns(10);
@@ -274,25 +285,74 @@ public class Vendas extends JFrame {
 		areaTroco.setBounds(312, 597, 305, 55);
 		contentPane.add(areaTroco);
 		
-		JButton botaoAdicionar = new JButton("New button");
-		botaoAdicionar.setBounds(564, 466, 89, 23);
+		JButton botaoAdicionar = new JButton("");
+		botaoAdicionar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionar.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		botaoAdicionar.setBorder(null);
+		botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionar.png")));
+		botaoAdicionar.setBounds(514, 215, 160, 60);
 		contentPane.add(botaoAdicionar);
 		
-		JButton botaoRemover = new JButton("New button");
-		botaoRemover.setBounds(564, 530, 89, 23);
+		JButton botaoRemover = new JButton("");
+		botaoRemover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemover.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		botaoRemover.setBorder(null);
+		botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemover.png")));
+		botaoRemover.setBounds(514, 278, 160, 60);
 		contentPane.add(botaoRemover);
 		
-		JButton botaoFinalizar = new JButton("New button");
-		botaoFinalizar.setBounds(425, 507, 89, 23);
+		JButton botaoFinalizar = new JButton("");
+		botaoFinalizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoFinalizar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bFinalizarCompraApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoFinalizar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bFinalizarCompra.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		botaoFinalizar.setBorder(null);
+		botaoFinalizar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bFinalizarCompra.png")));
+		botaoFinalizar.setBounds(312, 472, 310, 60);
 		contentPane.add(botaoFinalizar);
 		
 		areaListaCompras = new JTextField();
-		areaListaCompras.setBounds(712, 138, 236, 197);
+		areaListaCompras.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
+		areaListaCompras.setForeground(Color.DARK_GRAY);
+		areaListaCompras.setOpaque(false);
+		areaListaCompras.setBorder(null);
+		areaListaCompras.setBounds(685, 107, 550, 490);
 		contentPane.add(areaListaCompras);
 		areaListaCompras.setColumns(10);
 		
 		JLabel fundo = new JLabel("");
-		fundo.setIcon(new ImageIcon(Vendas.class.getResource("/Fundos/Venda.png")));
+		fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Venda.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);
 	}

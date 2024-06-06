@@ -249,40 +249,65 @@ public class Caixa extends JFrame {
 		contentPane.add(menuSair);
 		
 		areaCodProduto = new JTextField();
-		areaCodProduto.setForeground(Color.DARK_GRAY);
+		areaCodProduto.setText("Código do produto");
+		areaCodProduto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				areaCodProduto.setText(null);
+				areaCodProduto.setForeground(Color.DARK_GRAY);
+			}
+		});
+		areaCodProduto.setForeground(Color.LIGHT_GRAY);
 		areaCodProduto.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaCodProduto.setBorder(null);
 		areaCodProduto.setOpaque(false);
-		areaCodProduto.setBounds(312, 121, 305, 55);
+		areaCodProduto.setBounds(309, 137, 305, 55);
 		contentPane.add(areaCodProduto);
 		areaCodProduto.setColumns(10);
 		
 		areaQuantidade = new JTextField();
-		areaQuantidade.setForeground(Color.DARK_GRAY);
+		areaQuantidade.setText("Quantidade");
+		areaQuantidade.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				areaQuantidade.setText(null);
+				areaQuantidade.setForeground(Color.DARK_GRAY);
+			}
+		});
+		areaQuantidade.setForeground(Color.LIGHT_GRAY);
 		areaQuantidade.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaQuantidade.setBorder(null);
 		areaQuantidade.setOpaque(false);
 		areaQuantidade.setColumns(10);
-		areaQuantidade.setBounds(312, 247, 180, 55);
+		areaQuantidade.setBounds(309, 245, 180, 55);
 		contentPane.add(areaQuantidade);
 		
 		areaDinheiro = new JTextField();
-		areaDinheiro.setForeground(Color.DARK_GRAY);
+		areaDinheiro.setText("Dinheiro");
+		areaDinheiro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				areaDinheiro.setText(null);
+				areaDinheiro.setForeground(Color.DARK_GRAY);
+			}
+		});
+		areaDinheiro.setForeground(Color.LIGHT_GRAY);
 		areaDinheiro.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaDinheiro.setOpaque(false);
 		areaDinheiro.setColumns(10);
 		areaDinheiro.setBorder(null);
-		areaDinheiro.setBounds(312, 386, 305, 55);
+		areaDinheiro.setBounds(309, 367, 305, 55);
 		contentPane.add(areaDinheiro);
 		
 		areaTroco = new JTextField();
+		areaTroco.setText("Troco");
 		areaTroco.setForeground(Color.DARK_GRAY);
 		areaTroco.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaTroco.setEditable(false);
 		areaTroco.setOpaque(false);
 		areaTroco.setColumns(10);
 		areaTroco.setBorder(null);
-		areaTroco.setBounds(312, 597, 305, 55);
+		areaTroco.setBounds(309, 569, 305, 55);
 		contentPane.add(areaTroco);
 		
 		JButton botaoAdicionar = new JButton("");
@@ -301,7 +326,7 @@ public class Caixa extends JFrame {
 		});
 		botaoAdicionar.setBorder(null);
 		botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionar.png")));
-		botaoAdicionar.setBounds(514, 215, 160, 60);
+		botaoAdicionar.setBounds(511, 216, 160, 60);
 		contentPane.add(botaoAdicionar);
 		
 		JButton botaoRemover = new JButton("");
@@ -320,7 +345,7 @@ public class Caixa extends JFrame {
 		});
 		botaoRemover.setBorder(null);
 		botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemover.png")));
-		botaoRemover.setBounds(514, 278, 160, 60);
+		botaoRemover.setBounds(511, 279, 160, 60);
 		contentPane.add(botaoRemover);
 		
 		JButton botaoFinalizar = new JButton("");
@@ -339,10 +364,12 @@ public class Caixa extends JFrame {
 		});
 		botaoFinalizar.setBorder(null);
 		botaoFinalizar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bFinalizarCompra.png")));
-		botaoFinalizar.setBounds(312, 472, 310, 60);
+		botaoFinalizar.setBounds(328, 471, 310, 60);
 		contentPane.add(botaoFinalizar);
 		
 		areaListaCompras = new JTextField();
+		areaListaCompras.setHorizontalAlignment(SwingConstants.LEFT);
+		areaListaCompras.setText("teste");
 		areaListaCompras.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
 		areaListaCompras.setForeground(Color.DARK_GRAY);
 		areaListaCompras.setOpaque(false);
@@ -352,7 +379,7 @@ public class Caixa extends JFrame {
 		areaListaCompras.setColumns(10);
 		
 		JLabel fundo = new JLabel("");
-		fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Venda.png")));
+		fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Caixa.png")));
 		fundo.setBounds(0, 0, 1280, 720);
 		contentPane.add(fundo);
 	}

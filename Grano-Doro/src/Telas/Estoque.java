@@ -220,8 +220,8 @@ public class Estoque extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Funcionarios funcionarios = new Funcionarios();
-				//funcionarios.setVisible(true);
+				Funcionarios funcionarios = new Funcionarios();
+				funcionarios.setVisible(true);
 			}
 		});
 		menuFuncionarios.setIcon(new ImageIcon(Estoque.class.getResource("/Menus/menuFunc.png")));
@@ -311,16 +311,52 @@ public class Estoque extends JFrame {
 		areaProdutos.setBounds(685, 107, 550, 548);
 		contentPane.add(areaProdutos);
 		
-		JButton botaoCadastrarProduto = new JButton("cadastrar");
-		botaoCadastrarProduto.setBounds(437, 494, 89, 23);
+		JButton botaoCadastrarProduto = new JButton("");
+		botaoCadastrarProduto.setBorder(null);
+		botaoCadastrarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bCadastrarProduto.png")));
+		botaoCadastrarProduto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoCadastrarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bCadastrarProdutoApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoCadastrarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bCadastrarProduto.png")));
+			}
+		});
+		botaoCadastrarProduto.setBounds(328, 472, 310, 60);
 		contentPane.add(botaoCadastrarProduto);
 		
-		JButton botaoAtualizarProduto = new JButton("atualizar");
-		botaoAtualizarProduto.setBounds(437, 544, 89, 23);
+		JButton botaoAtualizarProduto = new JButton("");
+		botaoAtualizarProduto.setBorder(null);
+		botaoAtualizarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bAtualizar.png")));
+		botaoAtualizarProduto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoAtualizarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bAtualizarApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoAtualizarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bAtualizar.png")));
+			}
+		});
+		botaoAtualizarProduto.setBounds(328, 555, 310, 60);
 		contentPane.add(botaoAtualizarProduto);
 		
-		JButton botaoRemoverProduto = new JButton("remover");
-		botaoRemoverProduto.setBounds(437, 592, 89, 23);
+		JButton botaoRemoverProduto = new JButton("");
+		botaoRemoverProduto.setBorder(null);
+		botaoRemoverProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bRemover.png")));
+		botaoRemoverProduto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botaoRemoverProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bRemoverApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botaoRemoverProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bRemover.png")));
+			}
+		});
+		botaoRemoverProduto.setBounds(328, 638, 310, 60);
 		contentPane.add(botaoRemoverProduto);
 		
 		JLabel fundo = new JLabel("");

@@ -217,8 +217,8 @@ public class Mesa extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Estoque estoque = new Estoque();
-				//estoque.setVisible(true);
+				Estoque estoque = new Estoque();
+				estoque.setVisible(true);
 			}
 		});
 		menuEstoque.setIcon(new ImageIcon(Mesa.class.getResource("/Menus/menuEstoque.png")));

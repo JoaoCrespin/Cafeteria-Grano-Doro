@@ -196,8 +196,8 @@ public class Caixa extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Estoque estoque = new Estoque();
-				//estoque.setVisible(true);
+				Estoque estoque = new Estoque();
+				estoque.setVisible(true);
 			}
 		});
 		menuEstoque.setIcon(new ImageIcon(Caixa.class.getResource("/Menus/menuEstoque.png")));
@@ -314,18 +314,18 @@ public class Caixa extends JFrame {
 		botaoAdicionar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarApertado.png")));
+				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarApertadoP.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionar.png")));
+				botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarP.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
 		botaoAdicionar.setBorder(null);
-		botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionar.png")));
+		botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarP.png")));
 		botaoAdicionar.setBounds(511, 216, 160, 60);
 		contentPane.add(botaoAdicionar);
 		
@@ -333,18 +333,18 @@ public class Caixa extends JFrame {
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverApertado.png")));
+				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverApertadoP.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemover.png")));
+				botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverP.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
 		botaoRemover.setBorder(null);
-		botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemover.png")));
+		botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverP.png")));
 		botaoRemover.setBounds(511, 279, 160, 60);
 		contentPane.add(botaoRemover);
 		

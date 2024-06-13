@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -22,6 +23,9 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+
+import dto.ProdutosDTO;
+import dao.CadastroProdutosDAO;
 
 public class Estoque extends JFrame {
 
@@ -47,6 +51,26 @@ public class Estoque extends JFrame {
 			}
 		});
 	}
+	
+	private void cadastrarProduto() {
+	    String nomeproduto = areaNomeProduto.getText();
+	    String valorproduto = areaValorProduto.getText();
+
+	    ProdutosDTO produtosDTO = new ProdutosDTO();
+	    produtosDTO.setProdutoNome(nomeproduto);
+	    produtosDTO.setProdutoValor(Float.parseFloat(valorproduto)); // Certifique-se de converter o valor corretamente
+
+	    CadastroProdutosDAO cadastroprodutosDAO = new CadastroProdutosDAO();
+
+	    boolean isCadastrado = cadastroprodutosDAO.cadastrarProduto(produtosDTO);
+
+	    if (isCadastrado) {
+	        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto.");
+	    }
+	}
+
 
 	/**
 	 * Create the frame.
@@ -322,6 +346,10 @@ public class Estoque extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				botaoCadastrarProduto.setIcon(new ImageIcon(Estoque.class.getResource("/Imagens/bCadastrarProduto.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cadastrarProduto();
 			}
 		});
 		botaoCadastrarProduto.setBounds(328, 472, 310, 60);

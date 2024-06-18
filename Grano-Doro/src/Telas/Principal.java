@@ -113,27 +113,7 @@ public class Principal extends JFrame {
 		lblFechar.setBounds(1207, 5, 32, 32);
 		contentPane.add(lblFechar);
 		
-		JButton menuMesa = new JButton("");
-		menuMesa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-				Mesa mesa = new Mesa();
-				mesa.setVisible(true);
-			}
-		});
-		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
-		menuMesa.setBorder(null);
-		menuMesa.setBounds(0, 105, 270, 85);
-		contentPane.add(menuMesa);
+
 		
 		JButton menuCaixa = new JButton("");
 		menuCaixa.addMouseListener(new MouseAdapter() {
@@ -154,29 +134,30 @@ public class Principal extends JFrame {
 		});
 		menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
 		menuCaixa.setBorder(null);
-		menuCaixa.setBounds(0, 190, 270, 85);
+		menuCaixa.setBounds(0, 105, 270, 85);
 		contentPane.add(menuCaixa);
 		
-		JButton menuRelatorio = new JButton("");
-		menuRelatorio.addMouseListener(new MouseAdapter() {
+		JButton menuMesa = new JButton("");
+		menuMesa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				menuRelatorio.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuRelatóriosEscolhido.png")));
+				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				menuRelatorio.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuRelatórios.png")));
+				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Caixa caixa = new Caixa();
-				//caixa.setVisible(true);
+				setVisible(false);
+				Mesa mesa = new Mesa();
+				mesa.setVisible(true);
 			}
 		});
-		menuRelatorio.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuRelatórios.png")));
-		menuRelatorio.setBorder(null);
-		menuRelatorio.setBounds(0, 275, 270, 85);
-		contentPane.add(menuRelatorio);
+		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
+		menuMesa.setBorder(null);
+		menuMesa.setBounds(0, 190, 270, 85);
+		contentPane.add(menuMesa);
 		
 		JButton menuEstoque = new JButton("");
 		menuEstoque.addActionListener(new ActionListener() {
@@ -200,7 +181,7 @@ public class Principal extends JFrame {
 		});
 		menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
 		menuEstoque.setBorder(null);
-		menuEstoque.setBounds(0, 360, 270, 85);
+		menuEstoque.setBounds(0, 275, 270, 85);
 		contentPane.add(menuEstoque);
 		
 		JButton menuFuncionarios = new JButton("");
@@ -221,7 +202,7 @@ public class Principal extends JFrame {
 		});
 		menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
 		menuFuncionarios.setBorder(null);
-		menuFuncionarios.setBounds(0, 445, 270, 85);
+		menuFuncionarios.setBounds(0, 360, 270, 85);
 		contentPane.add(menuFuncionarios);
 		
 		JButton menuSair = new JButton("");
@@ -243,7 +224,7 @@ public class Principal extends JFrame {
 		});
 		menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSair.png")));
 		menuSair.setBorder(null);
-		menuSair.setBounds(0, 530, 270, 85);
+		menuSair.setBounds(0, 445, 270, 85);
 		contentPane.add(menuSair);
 		
 		JLabel fundo = new JLabel("");

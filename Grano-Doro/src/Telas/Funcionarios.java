@@ -1,9 +1,12 @@
 package Telas;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -11,12 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Font;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import dao.LoginDAO;
 import dto.LoginDTO;
 
@@ -28,6 +31,9 @@ public class Funcionarios extends JFrame {
     private JTextField areaContato;
     private JTextField areaSalario;
     private JTextField areaUsuario;
+    private JList<String> list;
+    private DefaultListModel<String> listModel;
+    private List<LoginDTO> logins;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -57,6 +63,7 @@ public class Funcionarios extends JFrame {
         lblVoltar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                // Implementação para voltar à tela anterior
             }
 
             @Override
@@ -296,6 +303,39 @@ public class Funcionarios extends JFrame {
             public void mouseExited(MouseEvent e) {
                 botaoAtualizarFuncionario.setIcon(new ImageIcon(Funcionarios.class.getResource("/Imagens/bAtualizar.png")));
             }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedIndex = list.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    LoginDTO selectedLogin = logins.get(selectedIndex);
+                    // Atualizar os dados do funcionário selecionado
+                    selectedLogin.setUsuario(areaUsuario.getText());
+                    selectedLogin.setSenha(areaSenha.getText());
+                    selectedLogin.setContato(areaContato.getText());
+                    
+                    // Tratamento para o salário
+                    double salario = 0.0;
+                    try {
+                        salario = NumberFormat.getInstance().parse(areaSalario.getText()).doubleValue();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Informe um valor válido para o salário.");
+                        return;
+                    }
+                    selectedLogin.setSalario(salario);
+                    
+                    // Atualizar no banco de dados
+                    LoginDAO dao = new LoginDAO();
+                    dao.updateLogin(selectedLogin);
+                    
+                    // Atualizar na lista
+                    listModel.set(selectedIndex, "  " + selectedLogin.getUsuario() + "  " + selectedLogin.getSenha() + "  " + selectedLogin.getContato() + "  " + selectedLogin.getSalario());
+                    
+                    JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecione um funcionário para atualizar.");
+                }
+            }
         });
         botaoAtualizarFuncionario.setIcon(new ImageIcon(Funcionarios.class.getResource("/Imagens/bAtualizar.png")));
         botaoAtualizarFuncionario.setBorder(null);
@@ -313,30 +353,76 @@ public class Funcionarios extends JFrame {
             public void mouseExited(MouseEvent e) {
                 botaoRemoverFuncionario.setIcon(new ImageIcon(Funcionarios.class.getResource("/Imagens/bRemover.png")));
             }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedIndex = list.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    int option = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este funcionário?");
+                    if (option == JOptionPane.YES_OPTION) {
+                        LoginDTO selectedLogin = logins.get(selectedIndex);
+                        int userID = selectedLogin.getUserID();
+                        // Remover do banco de dados
+                        LoginDAO dao = new LoginDAO();
+                        dao.removeLogin(userID);
+                        // Remover da lista
+                        listModel.remove(selectedIndex);
+                        JOptionPane.showMessageDialog(null, "Funcionário removido com sucesso.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecione um funcionário para remover.");
+                }
+            }
         });
         botaoRemoverFuncionario.setIcon(new ImageIcon(Funcionarios.class.getResource("/Imagens/bRemover.png")));
         botaoRemoverFuncionario.setBorder(null);
         botaoRemoverFuncionario.setBounds(328, 608, 310, 60);
         contentPane.add(botaoRemoverFuncionario);
 
-        // Substituindo JTextArea por JList
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        JList<String> list = new JList<>(listModel);
+        // Inicializando a JList
+        listModel = new DefaultListModel<>();
+        list = new JList<>(listModel);
         list.setOpaque(false);
         list.setForeground(Color.DARK_GRAY);
         list.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
         list.setBounds(711, 107, 498, 548);
         contentPane.add(list);
 
-        LoginDAO dao = new LoginDAO();
-        List<LoginDTO> logins = dao.getAllLogins();
-        for (LoginDTO login : logins) {
-            listModel.addElement(" Usuario: " + login.getUsuario() + ", Senha: " + login.getSenha());
-        }
+        // Adicionando um ouvinte de seleção na lista
+        list.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedIndex = list.getSelectedIndex();
+                    if (selectedIndex != -1) {
+                        LoginDTO selectedLogin = logins.get(selectedIndex);
+                        // Preencher os campos com as informações do funcionário selecionado
+                        areaUsuario.setText(selectedLogin.getUsuario());
+                        areaSenha.setText(selectedLogin.getSenha());
+                        areaContato.setText(selectedLogin.getContato());
+                        
+                        // Converter o salário para String antes de atribuir ao campo
+                        String salarioString = String.valueOf(selectedLogin.getSalario());
+                        areaSalario.setText(salarioString);
+                    }
+                }
+            }
+        });
+
+        // Carregando os dados da base de dados para a lista
+        loadLoginData();
 
         JLabel fundo = new JLabel("");
         fundo.setIcon(new ImageIcon(Funcionarios.class.getResource("/Fundos/Funcionários.png")));
         fundo.setBounds(0, 0, 1280, 720);
         contentPane.add(fundo);
+    }
+
+    // Método para carregar os dados da base de dados para a lista
+    private void loadLoginData() {
+        LoginDAO dao = new LoginDAO();
+        logins = dao.getAllLogins();
+        for (LoginDTO login : logins) {
+            listModel.addElement("  " + login.getUsuario() + "  " +login.getSenha() + "  " + login.getContato() + "  " +login.getSalario());
+        }
     }
 }

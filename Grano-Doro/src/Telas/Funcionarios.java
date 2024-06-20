@@ -8,20 +8,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import dao.LoginDAO;
 import dto.LoginDTO;
+import javax.swing.UIManager;
 
 public class Funcionarios extends JFrame {
 
@@ -31,8 +33,8 @@ public class Funcionarios extends JFrame {
     private JTextField areaContato;
     private JTextField areaSalario;
     private JTextField areaUsuario;
-    private JList<String> list;
-    private DefaultListModel<String> listModel;
+    private JTable table;
+    private DefaultTableModel tableModel;
     private List<LoginDTO> logins;
 
     public static void main(String[] args) {
@@ -306,14 +308,14 @@ public class Funcionarios extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int selectedIndex = list.getSelectedIndex();
+                int selectedIndex = table.getSelectedRow();
                 if (selectedIndex != -1) {
                     LoginDTO selectedLogin = logins.get(selectedIndex);
                     // Atualizar os dados do funcionário selecionado
                     selectedLogin.setUsuario(areaUsuario.getText());
                     selectedLogin.setSenha(areaSenha.getText());
                     selectedLogin.setContato(areaContato.getText());
-                    
+
                     // Tratamento para o salário
                     double salario = 0.0;
                     try {
@@ -323,14 +325,16 @@ public class Funcionarios extends JFrame {
                         return;
                     }
                     selectedLogin.setSalario(salario);
-                    
+
                     // Atualizar no banco de dados
                     LoginDAO dao = new LoginDAO();
                     dao.updateLogin(selectedLogin);
-                    
-                    // Atualizar na lista
-                    listModel.set(selectedIndex, "  " + selectedLogin.getUsuario() + "  " + selectedLogin.getSenha() + "  " + selectedLogin.getContato() + "  " + selectedLogin.getSalario());
-                    
+
+                    // Atualizar na tabela
+                    tableModel.setValueAt(selectedLogin.getUsuario(), selectedIndex, 0);
+                    tableModel.setValueAt(selectedLogin.getContato(), selectedIndex, 1);
+                    tableModel.setValueAt(selectedLogin.getSalario(), selectedIndex, 2);
+
                     JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecione um funcionário para atualizar.");
@@ -356,7 +360,7 @@ public class Funcionarios extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int selectedIndex = list.getSelectedIndex();
+                int selectedIndex = table.getSelectedRow();
                 if (selectedIndex != -1) {
                     int option = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este funcionário?");
                     if (option == JOptionPane.YES_OPTION) {
@@ -366,7 +370,8 @@ public class Funcionarios extends JFrame {
                         LoginDAO dao = new LoginDAO();
                         dao.removeLogin(userID);
                         // Remover da lista
-                        listModel.remove(selectedIndex);
+                        tableModel.removeRow(selectedIndex);
+                        logins.remove(selectedIndex);
                         JOptionPane.showMessageDialog(null, "Funcionário removido com sucesso.");
                     }
                 } else {
@@ -379,27 +384,31 @@ public class Funcionarios extends JFrame {
         botaoRemoverFuncionario.setBounds(328, 608, 310, 60);
         contentPane.add(botaoRemoverFuncionario);
 
-        // Inicializando a JList
-        listModel = new DefaultListModel<>();
-        list = new JList<>(listModel);
-        list.setOpaque(false);
-        list.setForeground(Color.DARK_GRAY);
-        list.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
-        list.setBounds(711, 107, 498, 548);
-        contentPane.add(list);
+        // Inicializando a JTable e o modelo de tabela
+        String[] colunas = {"Usuário", "Contato", "Salário"};
+        tableModel = new DefaultTableModel(colunas, 0);
+        table = new JTable(tableModel);
+        table.setBorder(null);
+        table.setBackground(Color.GREEN);
+        table.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
+        table.setForeground(Color.DARK_GRAY);
+        table.setRowHeight(30);
 
-        // Adicionando um ouvinte de seleção na lista
-        list.addListSelectionListener(new ListSelectionListener() {
+        // Carregar os dados da base de dados para a tabela
+        loadLoginData();
+
+        // Adicionando um ouvinte de seleção na tabela
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    int selectedIndex = list.getSelectedIndex();
+                    int selectedIndex = table.getSelectedRow();
                     if (selectedIndex != -1) {
                         LoginDTO selectedLogin = logins.get(selectedIndex);
                         // Preencher os campos com as informações do funcionário selecionado
                         areaUsuario.setText(selectedLogin.getUsuario());
                         areaSenha.setText(selectedLogin.getSenha());
                         areaContato.setText(selectedLogin.getContato());
-                        
+
                         // Converter o salário para String antes de atribuir ao campo
                         String salarioString = String.valueOf(selectedLogin.getSalario());
                         areaSalario.setText(salarioString);
@@ -408,8 +417,13 @@ public class Funcionarios extends JFrame {
             }
         });
 
-        // Carregando os dados da base de dados para a lista
-        loadLoginData();
+        // Adicionando a tabela a um JScrollPane para rolagem
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBorder(UIManager.getBorder("DesktopIcon.border"));
+        scrollPane.setBackground(Color.WHITE);
+        scrollPane.setOpaque(false);
+        scrollPane.setBounds(711, 107, 498, 548);
+        contentPane.add(scrollPane);
 
         JLabel fundo = new JLabel("");
         fundo.setIcon(new ImageIcon(Funcionarios.class.getResource("/Fundos/Funcionários.png")));
@@ -417,12 +431,13 @@ public class Funcionarios extends JFrame {
         contentPane.add(fundo);
     }
 
-    // Método para carregar os dados da base de dados para a lista
+    // Método para carregar os dados da base de dados para a tabela
     private void loadLoginData() {
         LoginDAO dao = new LoginDAO();
         logins = dao.getAllLogins();
         for (LoginDTO login : logins) {
-            listModel.addElement("  " + login.getUsuario() + "  " +login.getSenha() + "  " + login.getContato() + "  " +login.getSalario());
+            Object[] rowData = {login.getUsuario(), login.getContato(), login.getSalario()};
+            tableModel.addRow(rowData);
         }
     }
 }

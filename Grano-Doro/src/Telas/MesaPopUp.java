@@ -1,26 +1,27 @@
 package Telas;
 
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
+import java.awt.Font;
+import java.awt.Color;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.util.List;
-
-import dao.AcessoProdutosDAO;
+import dto.MesaDTO;
 import dto.ProdutosDTO;
+import dao.AcessoProdutosDAO;
+import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MesaPopUp extends JFrame {
 
@@ -34,28 +35,13 @@ public class MesaPopUp extends JFrame {
     private JList<String> areaLista;
     private JLabel lblValorTotal;
     private double valorTotal;
+    private MesaDTO mesa;
+    private JButton botaoMesa;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Caixa frame = new Caixa();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
-    public MesaPopUp() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public MesaPopUp(MesaDTO mesa, JButton botaoMesa) {
+        this.mesa = mesa;
+        this.botaoMesa = botaoMesa;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1280, 720);
         setLocationRelativeTo(null);
         contentPane = new JPanel();
@@ -164,10 +150,12 @@ public class MesaPopUp extends JFrame {
 
                 ProdutosDTO produto = buscarProdutoPorNome(nomeProduto);
                 if (produto != null) {
+                    mesa.adicionarProduto(produto);
                     atualizarLista(produto, quantidade);
                 } else {
                     System.out.println("Produto não encontrado!");
                 }
+                atualizarImagemMesa();
             }
         });
         botaoAdicionar.setBorder(null);
@@ -190,8 +178,10 @@ public class MesaPopUp extends JFrame {
                 int selectedIndex = areaLista.getSelectedIndex();
                 if (selectedIndex != -1) {
                     listModel.remove(selectedIndex);
+                    mesa.getProdutos().remove(selectedIndex);
                     calcularValorTotal();
                 }
+                atualizarImagemMesa();
             }
         });
         botaoRemover.setBorder(null);
@@ -234,6 +224,12 @@ public class MesaPopUp extends JFrame {
         fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Caixa.png")));
         fundo.setBounds(0, 0, 1280, 720);
         contentPane.add(fundo);
+
+        for (ProdutosDTO produto : mesa.getProdutos()) {
+            listModel.addElement(produto.getProdutoNome() + " - 1"); // Exibir quantidade 1 como exemplo
+        }
+        atualizarImagemMesa();
+        calcularValorTotal(); // Atualizar o valor total ao iniciar a janela
     }
 
     private ProdutosDTO buscarProdutoPorNome(String nomeProduto) {
@@ -301,5 +297,15 @@ public class MesaPopUp extends JFrame {
         areaTroco.setText("Troco");
         listModel.clear();
         lblValorTotal.setText("R$ 0.00");
+        mesa.limparProdutos();
+        atualizarImagemMesa();
+    }
+
+    private void atualizarImagemMesa() {
+        if (mesa.getProdutos().isEmpty()) {
+            botaoMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaLivre.png")));
+        } else {
+            botaoMesa.setIcon(new ImageIcon(Mesa.class.getResource("/Imagens/bMesaOcupada.png")));
+        }
     }
 }

@@ -197,23 +197,7 @@ public class Funcionarios extends JFrame {
 		contentPane.add(menuEstoque);
 		
 		JButton menuFuncionarios = new JButton("");
-		menuFuncionarios.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFuncEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Funcionarios funcionarios = new Funcionarios();
-				funcionarios.setVisible(true);
-				dispose();
-			}
-		});
-		menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
+		menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFuncEscolhido.png")));
 		menuFuncionarios.setBorder(null);
 		menuFuncionarios.setBounds(0, 360, 270, 85);
 		contentPane.add(menuFuncionarios);

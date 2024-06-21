@@ -138,23 +138,7 @@ public class Caixa extends JFrame {
 
 		
 		JButton menuCaixa = new JButton("");
-		menuCaixa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixaEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Caixa caixa = new Caixa();
-				caixa.setVisible(true);
-				dispose();
-			}
-		});
-		menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
+		menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixaEscolhido.png")));
 		menuCaixa.setBorder(null);
 		menuCaixa.setBounds(0, 105, 270, 85);
 		contentPane.add(menuCaixa);

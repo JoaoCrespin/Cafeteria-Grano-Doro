@@ -239,27 +239,7 @@ public class Estoque extends JFrame {
 		contentPane.add(menuMesa);
 		
 		JButton menuEstoque = new JButton("");
-		menuEstoque.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		menuEstoque.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoqueEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Estoque estoque = new Estoque();
-				estoque.setVisible(true);
-				dispose();
-			}
-		});
-		menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
+		menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoqueEscolhido.png")));
 		menuEstoque.setBorder(null);
 		menuEstoque.setBounds(0, 275, 270, 85);
 		contentPane.add(menuEstoque);

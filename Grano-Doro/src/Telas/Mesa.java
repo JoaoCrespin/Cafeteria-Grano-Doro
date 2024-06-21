@@ -137,23 +137,7 @@ public class Mesa extends JFrame {
 		contentPane.add(menuCaixa);
 		
 		JButton menuMesa = new JButton("");
-		menuMesa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Mesa mesa = new Mesa();
-				mesa.setVisible(true);
-				dispose();
-			}
-		});
-		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
+		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
 		menuMesa.setBorder(null);
 		menuMesa.setBounds(0, 190, 270, 85);
 		contentPane.add(menuMesa);

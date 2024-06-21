@@ -24,6 +24,10 @@ import javax.swing.event.ListSelectionListener;
 import dao.LoginDAO;
 import dto.LoginDTO;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class Funcionarios extends JFrame {
 
@@ -62,185 +66,179 @@ public class Funcionarios extends JFrame {
         contentPane.setLayout(null);
 
         JLabel lblVoltar = new JLabel("");
-        lblVoltar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // Implementação para voltar à tela anterior
-            }
+		lblVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Principal principal  = new Principal();
+				principal.setVisible(true);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltarApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
+			}
+		});
+		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
+		lblVoltar.setBounds(1071, 4, 32, 32);
+		contentPane.add(lblVoltar);
+		
+		JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimizaApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setState(Frame.ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+		lblMinimizar.setBounds(1140, 4, 32, 32);
+		contentPane.add(lblMinimizar);
+		
+		JLabel lblFechar = new JLabel("");
+		lblFechar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfecharApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
+			}
+		});
+		lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
+		lblFechar.setBounds(1207, 5, 32, 32);
+		contentPane.add(lblFechar);
+		
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltarApertado.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-            }
-        });
-        lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-        lblVoltar.setBounds(1071, 4, 32, 32);
-        contentPane.add(lblVoltar);
-
-        JLabel lblMinimizar = new JLabel("");
-        lblMinimizar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimizaApertado.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                setState(Frame.ICONIFIED);
-            }
-        });
-        lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
-        lblMinimizar.setBounds(1140, 4, 32, 32);
-        contentPane.add(lblMinimizar);
-
-        JLabel lblFechar = new JLabel("");
-        lblFechar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.exit(0);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfecharApertado.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
-            }
-        });
-        lblFechar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bfechar.png")));
-        lblFechar.setBounds(1207, 5, 32, 32);
-        contentPane.add(lblFechar);
-
-        JButton menuCaixa = new JButton("");
-        menuCaixa.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixaEscolhido.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Caixa caixa = new Caixa();
-                caixa.setVisible(true);
-            }
-        });
-        menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
-        menuCaixa.setBorder(null);
-        menuCaixa.setBounds(0, 105, 270, 85);
-        contentPane.add(menuCaixa);
-
-        JButton menuMesa = new JButton("");
-        menuMesa.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                setVisible(false);
-                Mesa mesa = new Mesa();
-                mesa.setVisible(true);
-            }
-        });
-        menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
-        menuMesa.setBorder(null);
-        menuMesa.setBounds(0, 190, 270, 85);
-        contentPane.add(menuMesa);
-
-        JButton menuEstoque = new JButton("");
-        menuEstoque.addActionListener(e -> {});
-        menuEstoque.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoqueEscolhido.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Estoque estoque = new Estoque();
-                estoque.setVisible(true);
-            }
-        });
-        menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
-        menuEstoque.setBorder(null);
-        menuEstoque.setBounds(0, 275, 270, 85);
-        contentPane.add(menuEstoque);
-
-        JButton menuFuncionarios = new JButton("");
-        menuFuncionarios.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFuncEscolhido.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Funcionarios funcionarios = new Funcionarios();
-                funcionarios.setVisible(true);
-            }
-        });
-        menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
-        menuFuncionarios.setBorder(null);
-        menuFuncionarios.setBounds(0, 360, 270, 85);
-        contentPane.add(menuFuncionarios);
-
-        JButton menuSair = new JButton("");
-        menuSair.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSairEscolhido.png")));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSair.png")));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Login login = new Login();
-                dispose();
-                login.setVisible(true);
-            }
-        });
-        menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSair.png")));
-        menuSair.setBorder(null);
-        menuSair.setBounds(0, 445, 270, 85);
-        contentPane.add(menuSair);
+		
+		JButton menuCaixa = new JButton("");
+		menuCaixa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixaEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Caixa caixa = new Caixa();
+				caixa.setVisible(true);
+				dispose();
+			}
+		});
+		menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
+		menuCaixa.setBorder(null);
+		menuCaixa.setBounds(0, 105, 270, 85);
+		contentPane.add(menuCaixa);
+		
+		JButton menuMesa = new JButton("");
+		menuMesa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesaEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Mesa mesa = new Mesa();
+				mesa.setVisible(true);
+				dispose();
+			}
+		});
+		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
+		menuMesa.setBorder(null);
+		menuMesa.setBounds(0, 190, 270, 85);
+		contentPane.add(menuMesa);
+		
+		JButton menuEstoque = new JButton("");
+		menuEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		menuEstoque.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoqueEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Estoque estoque = new Estoque();
+				estoque.setVisible(true);
+				dispose();
+			}
+		});
+		menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
+		menuEstoque.setBorder(null);
+		menuEstoque.setBounds(0, 275, 270, 85);
+		contentPane.add(menuEstoque);
+		
+		JButton menuFuncionarios = new JButton("");
+		menuFuncionarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFuncEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Funcionarios funcionarios = new Funcionarios();
+				funcionarios.setVisible(true);
+				dispose();
+			}
+		});
+		menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));
+		menuFuncionarios.setBorder(null);
+		menuFuncionarios.setBounds(0, 360, 270, 85);
+		contentPane.add(menuFuncionarios);
+		
+		JButton menuSair = new JButton("");
+		menuSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSairEscolhido.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSair.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login login = new Login();
+				dispose();
+				login.setVisible(true);
+			}
+		});
+		menuSair.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuSair.png")));
+		menuSair.setBorder(null);
+		menuSair.setBounds(0, 445, 270, 85);
+		contentPane.add(menuSair);
 
         areaSenha = new JTextField();
         areaSenha.addMouseListener(new MouseAdapter() {
@@ -250,21 +248,6 @@ public class Funcionarios extends JFrame {
                 areaSenha.setForeground(Color.DARK_GRAY);
             }
         });
-
-        areaUsuario = new JTextField();
-        areaUsuario.setText("Usuário");
-        areaUsuario.setOpaque(false);
-        areaUsuario.setForeground(Color.LIGHT_GRAY);
-        areaUsuario.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
-        areaUsuario.setColumns(10);
-        areaUsuario.setBorder(null);
-        areaUsuario.setBounds(323, 164, 185, 55);
-        contentPane.add(areaUsuario);
-
-        JButton botaoProcurarFuncionario = new JButton("");
-        botaoProcurarFuncionario.setBorder(null);
-        botaoProcurarFuncionario.setBounds(517, 167, 130, 60);
-        contentPane.add(botaoProcurarFuncionario);
         areaSenha.setText("Senha");
         areaSenha.setOpaque(false);
         areaSenha.setForeground(Color.LIGHT_GRAY);
@@ -274,7 +257,32 @@ public class Funcionarios extends JFrame {
         areaSenha.setBounds(323, 259, 315, 55);
         contentPane.add(areaSenha);
 
+        areaUsuario = new JTextField();
+        areaUsuario.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		areaUsuario.setText(null);
+        		areaUsuario.setForeground(Color.DARK_GRAY);
+        	}
+        });
+        areaUsuario.setText("Usuário");
+        areaUsuario.setOpaque(false);
+        areaUsuario.setForeground(Color.LIGHT_GRAY);
+        areaUsuario.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
+        areaUsuario.setColumns(10);
+        areaUsuario.setBorder(null);
+        areaUsuario.setBounds(323, 164, 315, 55);
+        contentPane.add(areaUsuario);
+  
+
         areaContato = new JTextField();
+        areaContato.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		areaContato.setText(null);
+        		areaContato.setForeground(Color.DARK_GRAY);
+        	}
+        });
         areaContato.setText("Contato");
         areaContato.setOpaque(false);
         areaContato.setForeground(Color.LIGHT_GRAY);
@@ -285,6 +293,13 @@ public class Funcionarios extends JFrame {
         contentPane.add(areaContato);
 
         areaSalario = new JTextField();
+        areaSalario.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		areaSalario.setText(null);
+        		areaSalario.setForeground(Color.DARK_GRAY);
+        	}
+        });
         areaSalario.setText("Salário");
         areaSalario.setOpaque(false);
         areaSalario.setForeground(Color.LIGHT_GRAY);
@@ -381,30 +396,41 @@ public class Funcionarios extends JFrame {
         });
         botaoRemoverFuncionario.setIcon(new ImageIcon(Funcionarios.class.getResource("/Imagens/bRemover.png")));
         botaoRemoverFuncionario.setBorder(null);
-        botaoRemoverFuncionario.setBounds(328, 608, 310, 60);
+        botaoRemoverFuncionario.setBounds(328, 615, 310, 60);
         contentPane.add(botaoRemoverFuncionario);
 
-        // Inicializando a JTable e o modelo de tabela
         String[] colunas = {"Usuário", "Contato", "Salário"};
         tableModel = new DefaultTableModel(colunas, 0);
         table = new JTable(tableModel);
+        table.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		areaUsuario.setForeground(Color.DARK_GRAY);
+        		areaSenha.setForeground(Color.DARK_GRAY);
+        		areaContato.setForeground(Color.DARK_GRAY);
+        		areaSalario.setForeground(Color.DARK_GRAY);
+        		
+        	}
+        });
+        table.setGridColor(new Color(217, 217, 217));
+        table.setShowVerticalLines(false);
+        table.setFillsViewportHeight(true);
         table.setBorder(null);
-        table.setBackground(Color.GREEN);
+        table.setBackground(new Color(217, 217, 217));
         table.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
         table.setForeground(Color.DARK_GRAY);
         table.setRowHeight(30);
+        
 
-        // Carregar os dados da base de dados para a tabela
         loadLoginData();
 
-        // Adicionando um ouvinte de seleção na tabela
+
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     int selectedIndex = table.getSelectedRow();
                     if (selectedIndex != -1) {
                         LoginDTO selectedLogin = logins.get(selectedIndex);
-                        // Preencher os campos com as informações do funcionário selecionado
                         areaUsuario.setText(selectedLogin.getUsuario());
                         areaSenha.setText(selectedLogin.getSenha());
                         areaContato.setText(selectedLogin.getContato());
@@ -417,12 +443,12 @@ public class Funcionarios extends JFrame {
             }
         });
 
-        // Adicionando a tabela a um JScrollPane para rolagem
+    
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBorder(UIManager.getBorder("DesktopIcon.border"));
+        scrollPane.setBorder(null);
         scrollPane.setBackground(Color.WHITE);
         scrollPane.setOpaque(false);
-        scrollPane.setBounds(711, 107, 498, 548);
+        scrollPane.setBounds(686, 86, 548, 590);
         contentPane.add(scrollPane);
 
         JLabel fundo = new JLabel("");
@@ -431,7 +457,7 @@ public class Funcionarios extends JFrame {
         contentPane.add(fundo);
     }
 
-    // Método para carregar os dados da base de dados para a tabela
+   
     private void loadLoginData() {
         LoginDAO dao = new LoginDAO();
         logins = dao.getAllLogins();

@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -22,6 +23,8 @@ import dao.AcessoProdutosDAO;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
+import javax.swing.ScrollPaneConstants;
 
 public class MesaPopUp extends JFrame {
 
@@ -39,19 +42,35 @@ public class MesaPopUp extends JFrame {
     private JButton botaoMesa;
 
     public MesaPopUp(MesaDTO mesa, JButton botaoMesa) {
+    	setUndecorated(true);
         this.mesa = mesa;
         this.botaoMesa = botaoMesa;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 1280, 720);
+        setBounds(100, 100, 1000, 680);
         setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        lblValorTotal = new JLabel("R$ 0.00");
-        lblValorTotal.setBounds(917, 626, 137, 48);
-        contentPane.add(lblValorTotal);
+        
+        JLabel lblMinimizar = new JLabel("");
+		lblMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimizaApertado.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setState(Frame.ICONIFIED);
+			}
+		});
+		lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
+		lblMinimizar.setBounds(958, 0, 32, 32);
+		contentPane.add(lblMinimizar);
 
         areaCodProduto = new JTextField();
         areaCodProduto.setText("Nome do Produto");
@@ -66,7 +85,7 @@ public class MesaPopUp extends JFrame {
         areaCodProduto.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
         areaCodProduto.setBorder(null);
         areaCodProduto.setOpaque(false);
-        areaCodProduto.setBounds(309, 137, 305, 55);
+        areaCodProduto.setBounds(36, 117, 305, 55);
         contentPane.add(areaCodProduto);
         areaCodProduto.setColumns(10);
 
@@ -84,7 +103,7 @@ public class MesaPopUp extends JFrame {
         areaQuantidade.setBorder(null);
         areaQuantidade.setOpaque(false);
         areaQuantidade.setColumns(10);
-        areaQuantidade.setBounds(309, 245, 180, 55);
+        areaQuantidade.setBounds(36, 225, 180, 55);
         contentPane.add(areaQuantidade);
 
         areaDinheiro = new JTextField();
@@ -112,7 +131,7 @@ public class MesaPopUp extends JFrame {
         areaDinheiro.setOpaque(false);
         areaDinheiro.setColumns(10);
         areaDinheiro.setBorder(null);
-        areaDinheiro.setBounds(309, 367, 305, 55);
+        areaDinheiro.setBounds(36, 339, 305, 55);
         contentPane.add(areaDinheiro);
 
         areaTroco = new JTextField();
@@ -123,7 +142,7 @@ public class MesaPopUp extends JFrame {
         areaTroco.setOpaque(false);
         areaTroco.setColumns(10);
         areaTroco.setBorder(null);
-        areaTroco.setBounds(309, 569, 305, 55);
+        areaTroco.setBounds(36, 549, 305, 55);
         contentPane.add(areaTroco);
 
         JButton botaoAdicionar = new JButton("");
@@ -160,7 +179,7 @@ public class MesaPopUp extends JFrame {
         });
         botaoAdicionar.setBorder(null);
         botaoAdicionar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bAdicionarP.png")));
-        botaoAdicionar.setBounds(511, 216, 160, 60);
+        botaoAdicionar.setBounds(238, 196, 160, 60);
         contentPane.add(botaoAdicionar);
 
         JButton botaoRemover = new JButton("");
@@ -186,7 +205,7 @@ public class MesaPopUp extends JFrame {
         });
         botaoRemover.setBorder(null);
         botaoRemover.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bRemoverP.png")));
-        botaoRemover.setBounds(511, 279, 160, 60);
+        botaoRemover.setBounds(238, 259, 160, 60);
         contentPane.add(botaoRemover);
 
         JButton botaoFinalizar = new JButton("");
@@ -206,23 +225,36 @@ public class MesaPopUp extends JFrame {
         });
         botaoFinalizar.setBorder(null);
         botaoFinalizar.setIcon(new ImageIcon(Caixa.class.getResource("/Imagens/bFinalizarCompra.png")));
-        botaoFinalizar.setBounds(328, 471, 310, 60);
+        botaoFinalizar.setBounds(60, 447, 310, 60);
         contentPane.add(botaoFinalizar);
 
         listModel = new DefaultListModel<>();
         areaLista = new JList<>(listModel);
+        areaLista.setBackground(new Color(217, 217, 217));
+        areaLista.setBorder(null);
+        areaLista.setOpaque(false);
         areaLista.setFont(new Font("Segoe UI Light", Font.BOLD, 24));
         areaLista.setForeground(Color.DARK_GRAY);
 
         JScrollPane scrollPane = new JScrollPane(areaLista);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setOpaque(false);
+        scrollPane.setBackground(new Color(217, 217, 217));
+        scrollPane.setBorder(null);
         scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBounds(711, 107, 498, 493);
+        scrollPane.setBounds(431, 68, 538, 540);
         contentPane.add(scrollPane);
+        
+        lblValorTotal = new JLabel("R$ 0.00");
+        lblValorTotal.setForeground(new Color(255, 255, 255));
+        lblValorTotal.setHorizontalAlignment(SwingConstants.CENTER);
+        lblValorTotal.setFont(new Font("Segoe UI Light", Font.BOLD, 30));
+        lblValorTotal.setBounds(795, 608, 174, 55);
+        contentPane.add(lblValorTotal);
 
         JLabel fundo = new JLabel("");
-        fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Caixa.png")));
-        fundo.setBounds(0, 0, 1280, 720);
+        fundo.setIcon(new ImageIcon(Caixa.class.getResource("/Fundos/Mesa.png")));
+        fundo.setBounds(0, 0, 1000, 680);
         contentPane.add(fundo);
 
         for (ProdutosDTO produto : mesa.getProdutos()) {

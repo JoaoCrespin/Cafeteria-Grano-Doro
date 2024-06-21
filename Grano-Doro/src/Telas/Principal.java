@@ -57,23 +57,6 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblVoltar = new JLabel("");
-		lblVoltar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltarApertado.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-			}
-		});
-		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-		lblVoltar.setBounds(1071, 4, 32, 32);
-		contentPane.add(lblVoltar);
 		
 		JLabel lblMinimizar = new JLabel("");
 		lblMinimizar.addMouseListener(new MouseAdapter() {
@@ -129,7 +112,7 @@ public class Principal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Caixa caixa = new Caixa();
 				caixa.setVisible(true);
-				
+				dispose();
 			}
 		});
 		menuCaixa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuCaixa.png")));
@@ -149,9 +132,9 @@ public class Principal extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
 				Mesa mesa = new Mesa();
 				mesa.setVisible(true);
+				dispose();
 			}
 		});
 		menuMesa.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuMesa.png")));
@@ -177,6 +160,7 @@ public class Principal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Estoque estoque = new Estoque();
 				estoque.setVisible(true);
+				dispose();
 			}
 		});
 		menuEstoque.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuEstoque.png")));
@@ -198,6 +182,7 @@ public class Principal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Funcionarios funcionarios = new Funcionarios();
 				funcionarios.setVisible(true);
+				dispose();
 			}
 		});
 		menuFuncionarios.setIcon(new ImageIcon(Principal.class.getResource("/Menus/menuFunc.png")));

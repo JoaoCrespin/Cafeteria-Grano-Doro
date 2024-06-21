@@ -161,7 +161,7 @@ public class Cadastro extends JFrame {
 		areaCadastrarSenha.setBounds(788, 281, 418, 55);
 		contentPane.add(areaCadastrarSenha);
 		
-		areaRepetirSenha = new JPasswordField("Repita a Senha");
+		areaRepetirSenha = new JPasswordField("Senha");
 		areaRepetirSenha.setOpaque(false);
 		areaRepetirSenha.setBorder(null);
 		areaRepetirSenha.addMouseListener(new MouseAdapter() {

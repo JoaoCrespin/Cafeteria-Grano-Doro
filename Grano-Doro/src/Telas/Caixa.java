@@ -22,6 +22,8 @@ import java.awt.Component;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.util.List;
 
 import dao.AcessoProdutosDAO;
@@ -37,6 +39,8 @@ public class Caixa extends JFrame {
     private JTextField areaTroco;
     private DefaultListModel<String> listModel;
     private JList<String> areaLista;
+    private JLabel lblValorTotal;
+    private double valorTotal;
 
     /**
      * Launch the application.
@@ -82,6 +86,10 @@ public class Caixa extends JFrame {
                 lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
             }
         });
+        
+        lblValorTotal = new JLabel("R$ 0.00");
+        lblValorTotal.setBounds(917, 626, 137, 48);
+        contentPane.add(lblValorTotal);
         lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
         lblVoltar.setBounds(1071, 4, 32, 32);
         contentPane.add(lblVoltar);
@@ -272,6 +280,17 @@ public class Caixa extends JFrame {
 
         areaDinheiro = new JTextField();
         areaDinheiro.setText("Dinheiro");
+        areaDinheiro.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                calcularTroco();
+            }
+            public void removeUpdate(DocumentEvent e) {
+                calcularTroco();
+            }
+            public void insertUpdate(DocumentEvent e) {
+                calcularTroco();
+            }
+        });
         areaDinheiro.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -348,6 +367,7 @@ public class Caixa extends JFrame {
                 int selectedIndex = areaLista.getSelectedIndex();
                 if (selectedIndex != -1) {
                     listModel.remove(selectedIndex);
+                    calcularValorTotal();
                 }
             }
         });
@@ -368,7 +388,7 @@ public class Caixa extends JFrame {
             }
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Lógica para finalizar a compra
+                finalizarCompra();
             }
         });
         botaoFinalizar.setBorder(null);
@@ -413,10 +433,51 @@ public class Caixa extends JFrame {
                 int quantidadeAtual = Integer.parseInt(partes[1]);
                 int novaQuantidade = quantidadeAtual + quantidade;
                 listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade);
+                calcularValorTotal();
                 return;
             }
         }
         listModel.addElement(produto.getProdutoNome() + " - " + quantidade);
+        calcularValorTotal();
+    }
+
+    private void calcularValorTotal() {
+        valorTotal = 0.0;
+        for (int i = 0; i < listModel.size(); i++) {
+            String item = listModel.get(i);
+            String[] partes = item.split(" - ");
+            String nomeProduto = partes[0];
+            int quantidade = Integer.parseInt(partes[1]);
+
+            ProdutosDTO produto = buscarProdutoPorNome(nomeProduto);
+            if (produto != null) {
+                valorTotal += produto.getProdutoValor() * quantidade;
+            }
+        }
+        lblValorTotal.setText(String.format("R$ %.2f", valorTotal));
+        calcularTroco();
+    }
+
+    private void calcularTroco() {
+        try {
+            double dinheiro = Double.parseDouble(areaDinheiro.getText());
+            double troco = dinheiro - valorTotal;
+            areaTroco.setText(String.format("R$ %.2f", troco));
+        } catch (NumberFormatException e) {
+            areaTroco.setText("R$ 0.00");
+        }
+    }
+
+    private void finalizarCompra() {
+        areaCodProduto.setText("Nome do Produto");
+        areaCodProduto.setForeground(Color.LIGHT_GRAY);
+        areaQuantidade.setText("Quantidade");
+        areaQuantidade.setForeground(Color.LIGHT_GRAY);
+        areaDinheiro.setText("Dinheiro");
+        areaDinheiro.setForeground(Color.LIGHT_GRAY);
+        areaTroco.setText("Troco");
+        listModel.clear();
+        lblValorTotal.setText("R$ 0.00");
     }
 
     private static void addPopup(Component component, final JPopupMenu popup) {

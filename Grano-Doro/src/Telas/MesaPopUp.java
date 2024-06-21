@@ -48,6 +48,8 @@ public class MesaPopUp extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1000, 680);
         setLocationRelativeTo(null);
+        int verticalOffset = -20;
+        setLocation(getX(), getY() - verticalOffset);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);

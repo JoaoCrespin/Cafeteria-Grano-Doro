@@ -416,10 +416,7 @@ public class Funcionarios extends JFrame {
                     if (selectedIndex != -1) {
                         LoginDTO selectedLogin = logins.get(selectedIndex);
                         areaUsuario.setText(selectedLogin.getUsuario());
-                        areaSenha.setText(selectedLogin.getSenha());
                         areaContato.setText(selectedLogin.getContato());
-
-                        // Converter o salário para String antes de atribuir ao campo
                         String salarioString = String.valueOf(selectedLogin.getSalario());
                         areaSalario.setText(salarioString);
                     }

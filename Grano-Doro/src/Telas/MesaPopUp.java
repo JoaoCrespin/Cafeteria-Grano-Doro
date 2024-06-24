@@ -260,10 +260,10 @@ public class MesaPopUp extends JFrame {
         contentPane.add(fundo);
 
         for (ProdutosDTO produto : mesa.getProdutos()) {
-            listModel.addElement(produto.getProdutoNome() + " - 1"); // Exibir quantidade 1 como exemplo
+            listModel.addElement(produto.getProdutoNome() + " - 1"); 
         }
         atualizarImagemMesa();
-        calcularValorTotal(); // Atualizar o valor total ao iniciar a janela
+        calcularValorTotal(); 
     }
 
     private ProdutosDTO buscarProdutoPorNome(String nomeProduto) {
@@ -272,6 +272,7 @@ public class MesaPopUp extends JFrame {
 
         for (ProdutosDTO produto : produtos) {
             if (produto.getProdutoNome().equalsIgnoreCase(nomeProduto)) {
+                System.out.println("Produto encontrado: " + produto.getProdutoNome());
                 return produto;
             }
         }
@@ -285,12 +286,12 @@ public class MesaPopUp extends JFrame {
                 String[] partes = item.split(" - ");
                 int quantidadeAtual = Integer.parseInt(partes[1]);
                 int novaQuantidade = quantidadeAtual + quantidade;
-                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade);
+                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
                 calcularValorTotal();
                 return;
             }
         }
-        listModel.addElement(produto.getProdutoNome() + " - " + quantidade);
+        listModel.addElement(produto.getProdutoNome() + " - " + quantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
         calcularValorTotal();
     }
 

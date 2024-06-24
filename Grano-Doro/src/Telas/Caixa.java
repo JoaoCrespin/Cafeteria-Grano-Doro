@@ -424,11 +424,13 @@ public class Caixa extends JFrame {
 
         for (ProdutosDTO produto : produtos) {
             if (produto.getProdutoNome().equalsIgnoreCase(nomeProduto)) {
+                System.out.println("Produto encontrado: " + produto.getProdutoNome());
                 return produto;
             }
         }
         return null;
     }
+
 
     private void atualizarLista(ProdutosDTO produto, int quantidade) {
         for (int i = 0; i < listModel.size(); i++) {
@@ -437,14 +439,15 @@ public class Caixa extends JFrame {
                 String[] partes = item.split(" - ");
                 int quantidadeAtual = Integer.parseInt(partes[1]);
                 int novaQuantidade = quantidadeAtual + quantidade;
-                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade);
+                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
                 calcularValorTotal();
                 return;
             }
         }
-        listModel.addElement(produto.getProdutoNome() + " - " + quantidade);
+        listModel.addElement(produto.getProdutoNome() + " - " + quantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
         calcularValorTotal();
     }
+
 
     private void calcularValorTotal() {
         valorTotal = 0.0;

@@ -291,7 +291,6 @@ public class Funcionarios extends JFrame {
                     LoginDTO selectedLogin = logins.get(selectedIndex);
                     // Atualizar os dados do funcionário selecionado
                     selectedLogin.setUsuario(areaUsuario.getText());
-                    selectedLogin.setSenha(areaSenha.getText());
                     selectedLogin.setContato(areaContato.getText());
 
                     // Tratamento para o salário

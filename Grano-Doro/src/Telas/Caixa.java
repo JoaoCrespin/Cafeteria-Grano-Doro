@@ -74,28 +74,6 @@ public class Caixa extends JFrame {
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
-        
-        
-        JLabel lblVoltar = new JLabel("");
-		lblVoltar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Principal principal  = new Principal();
-				principal.setVisible(true);
-				dispose();
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltarApertado.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-			}
-		});
-		lblVoltar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bvoltar.png")));
-		lblVoltar.setBounds(1071, 4, 32, 32);
-		contentPane.add(lblVoltar);
 		
 		JLabel lblMinimizar = new JLabel("");
 		lblMinimizar.addMouseListener(new MouseAdapter() {

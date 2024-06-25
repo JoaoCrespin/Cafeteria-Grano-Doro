@@ -55,24 +55,22 @@ public class MesaPopUp extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
         
-        JLabel lblMinimizar = new JLabel("");
-		lblMinimizar.addMouseListener(new MouseAdapter() {
+        JLabel lblVoltar = new JLabel("");
+		lblVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimizaApertado.png")));
-			}
+				lblVoltar.setIcon(new ImageIcon(MesaPopUp.class.getResource("/Imagens/bvoltarApertado.png")));			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
-			}
+				lblVoltar.setIcon(new ImageIcon(MesaPopUp.class.getResource("/Imagens/bvoltarBranco.png")));			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setState(Frame.ICONIFIED);
+				dispose();
 			}
 		});
-		lblMinimizar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/bminimiza.png")));
-		lblMinimizar.setBounds(958, 0, 32, 32);
-		contentPane.add(lblMinimizar);
+		lblVoltar.setIcon(new ImageIcon(MesaPopUp.class.getResource("/Imagens/bvoltarBranco.png")));
+		lblVoltar.setBounds(958, 0, 32, 32);
+		contentPane.add(lblVoltar);
 
         areaCodProduto = new JTextField();
         areaCodProduto.setText("Nome do Produto");

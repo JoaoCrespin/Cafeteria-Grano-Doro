@@ -184,18 +184,13 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				metodologin();
+				dispose();
 			}
 		});
 		botaoLogar.setIcon(new ImageIcon(Login.class.getResource("/Imagens/botaoEntrar.png")));
 		botaoLogar.setBackground(new Color(240, 240, 240));
 		botaoLogar.setBorderPainted(false);
-		botaoLogar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
 
-				
-			}
-		});
 		
 		areaVerSenha = new JTextField();
 		areaVerSenha.setForeground(Color.DARK_GRAY);

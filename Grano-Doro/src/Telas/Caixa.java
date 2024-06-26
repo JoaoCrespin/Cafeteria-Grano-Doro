@@ -417,12 +417,16 @@ public class Caixa extends JFrame {
                 String[] partes = item.split(" - ");
                 int quantidadeAtual = Integer.parseInt(partes[1]);
                 int novaQuantidade = quantidadeAtual + quantidade;
-                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
+                double preçoAtual = produto.getProdutoValor();
+                double novoPreço = preçoAtual*novaQuantidade;
+                listModel.set(i, produto.getProdutoNome() + " - " + novaQuantidade + " - R$ " + String.format("%.2f", novoPreço));
                 calcularValorTotal();
                 return;
             }
         }
-        listModel.addElement(produto.getProdutoNome() + " - " + quantidade + " - R$ " + String.format("%.2f", produto.getProdutoValor()));
+        int quant = Integer.parseInt(areaQuantidade.getText());
+        double prec = produto.getProdutoValor() * quant;
+        listModel.addElement(produto.getProdutoNome() + " - " + quantidade + " - R$ " + String.format("%.2f", prec));
         calcularValorTotal();
     }
 
